@@ -167,7 +167,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .today-card{
   background:var(--white);border-radius:20px;box-shadow:var(--shadow);
   border:1px solid var(--line);
-  display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;
+  display:grid;grid-template-columns:auto 1fr auto auto;gap:22px;align-items:center;
   padding:22px 28px;
 }
 .today-date{
@@ -190,7 +190,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .today-msg .ic svg{width:24px;height:24px;}
 .today-msg .t-title{font-size:14px;font-weight:600;}
 .today-msg .t-text{font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:420px;}
-.today-hotline{display:flex;align-items:center;gap:14px;padding-left:22px;border-left:1px solid var(--line);}
+.today-hotline,.today-weather{display:flex;align-items:center;gap:14px;padding-left:22px;border-left:1px solid var(--line);}
 .today-hotline .ic{
   width:46px;height:46px;border-radius:50%;background:var(--amber);color:var(--white);
   display:flex;align-items:center;justify-content:center;flex:none;
@@ -198,6 +198,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .today-hotline .ic svg{width:22px;height:22px;}
 .today-hotline .h-label{font-size:12px;color:var(--muted);letter-spacing:.06em;}
 .today-hotline .h-num{font-family:var(--font-serif);font-size:19px;font-weight:700;color:var(--amber-deep);white-space:nowrap;}
+.today-weather .ic{width:46px;height:46px;border-radius:50%;background:var(--amber);color:var(--white);display:flex;align-items:center;justify-content:center;flex:none;}
+.today-weather .ic svg{width:22px;height:22px;}
+.today-weather .h-label{font-size:12px;color:var(--muted);letter-spacing:.06em;}
+.today-weather .w-now{display:flex;align-items:baseline;gap:7px;margin-top:2px;}
+.today-weather .w-temp{font-family:var(--font-serif);font-size:26px;font-weight:700;color:var(--pine-deep);line-height:1;}
+.today-weather .w-desc{font-size:13px;color:var(--pine-deep);}
+.today-weather .w-hl{font-size:12px;color:var(--muted);margin-top:3px;white-space:nowrap;}
+.today-weather .w-meta{font-size:11.5px;color:var(--muted);margin-top:2px;white-space:nowrap;}
+.today-weather .w-tip{font-size:12px;color:var(--amber-deep);margin-top:3px;font-weight:600;}
 
 /* ===== 关于小区 ===== */
 .about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
@@ -581,7 +590,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   .today-card{grid-template-columns:1fr;gap:16px;padding:20px;}
   .today-date{border-right:none;border-bottom:1px solid var(--line);padding-right:0;padding-bottom:16px;}
   .today-msg .t-text{white-space:normal;}
-  .today-hotline{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:16px;}
+  .today-hotline,.today-weather{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:16px;}
   .about-points{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .news-grid{grid-template-columns:1fr;}
@@ -689,6 +698,22 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
         <div>
           <div class="h-label">24 小时服务热线</div>
           <div class="h-num">待公示</div>
+        </div>
+      </div>
+      <div class="today-weather" id="todayWeather">
+        <span class="ic" id="weatherIc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H8.5a6 6 0 1 1 5.4-8.7A4.5 4.5 0 1 1 17.5 18.5z"/><circle cx="18" cy="7" r="3"/><path d="M18 1.5V3M23 7h-1.5M18 12v-1.5M21.6 3.4l-1 1M14.4 3.4l1 1"/></svg>
+        </span>
+        <div>
+          <div class="h-label">今日天气 · 蚌山区</div>
+          <div class="w-now">
+            <span class="w-temp" id="weatherTemp">--</span>
+            <span class="w-desc" id="weatherDesc">加载中…</span>
+          </div>
+          <div class="w-hl" id="weatherHL">最高 --℃ · 最低 --℃</div>
+          <div class="w-meta"><span id="weatherRain">降水 --%</span><span style="margin:0 6px;">·</span><span id="weatherUV">紫外线 --</span></div>
+          <div class="w-meta" id="weatherSun">日出 --:-- · 日落 --:--</div>
+          <div class="w-tip" id="weatherTip" style="display:none;"></div>
         </div>
       </div>
     </div>
@@ -1615,6 +1640,82 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       head.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   });
+
+  /* ---- 今日天气（Open-Meteo 实时接口） ---- */
+  var weatherIc = document.getElementById('weatherIc');
+  var weatherTemp = document.getElementById('weatherTemp');
+  var weatherDesc = document.getElementById('weatherDesc');
+  var weatherHL = document.getElementById('weatherHL');
+  var weatherRain = document.getElementById('weatherRain');
+  var weatherUV = document.getElementById('weatherUV');
+  var weatherSun = document.getElementById('weatherSun');
+  var weatherTip = document.getElementById('weatherTip');
+  if(weatherIc && weatherTemp){
+    var W = {
+      sun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1.5V4M12 20v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M1.5 12H4M20 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>',
+      suncloud:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H8.5a6 6 0 1 1 5.4-8.7A4.5 4.5 0 1 1 17.5 18.5z"/><circle cx="18" cy="7" r="3"/><path d="M18 1.5V3M23 7h-1.5M18 12v-1.5M21.6 3.4l-1 1M14.4 3.4l1 1"/></svg>',
+      cloud:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H8.5a6 6 0 1 1 5.4-8.7A4.5 4.5 0 1 1 17.5 18.5z"/></svg>',
+      fog:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 14.5H8.5a5.5 5.5 0 1 1 5-8A6.5 6.5 0 1 1 17.5 14.5z"/><path d="M4 18.5h16M6.5 21.5h11"/></svg>',
+      rain:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 14.5H8.5a6 6 0 1 1 5.4-8.7A4.5 4.5 0 1 1 17.5 14.5z"/><path d="M8.5 17v2.5M12 16.5v2.5M15.5 17v2.5"/></svg>',
+      snow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 14.5H8.5a6 6 0 1 1 5.4-8.7A4.5 4.5 0 1 1 17.5 14.5z"/><circle cx="8.5" cy="18" r="0.9"/><circle cx="12" cy="20" r="0.9"/><circle cx="15.5" cy="18" r="0.9"/></svg>',
+      thunder:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 13.5H8.5a6 6 0 1 1 5.4-8.7A4.5 4.5 0 1 1 17.5 13.5z"/><path d="M12.5 14.5 9.5 19h2.8l-1.6 3.5"/></svg>'
+    };
+    var wmap = {'0':'晴','1':'晴间多云','2':'多云','3':'阴','45':'雾','48':'雾凇','51':'毛毛雨','53':'毛毛雨','55':'毛毛雨','56':'冻雨','57':'冻雨','61':'小雨','63':'中雨','65':'大雨','66':'冻雨','67':'冻雨','71':'小雪','73':'中雪','75':'大雪','77':'雪粒','80':'阵雨','81':'阵雨','82':'强阵雨','85':'阵雪','86':'阵雪','95':'雷阵雨','96':'雷阵雨伴冰雹','99':'强雷暴'};
+    function wicon(c){
+      c = String(c);
+      if(c === '0' || c === '1') return 'sun';
+      if(c === '2') return 'suncloud';
+      if(c === '3') return 'cloud';
+      if(c === '45' || c === '48') return 'fog';
+      if(c === '51' || c === '53' || c === '55' || c === '56' || c === '57' || c === '61' || c === '63' || c === '65' || c === '66' || c === '67' || c === '80' || c === '81' || c === '82') return 'rain';
+      if(c === '71' || c === '73' || c === '75' || c === '77' || c === '85' || c === '86') return 'snow';
+      if(c === '95' || c === '96' || c === '99') return 'thunder';
+      return 'cloud';
+    }
+    function uvLabel(u){
+      if(u < 3) return '低';
+      if(u < 6) return '中等';
+      if(u < 8) return '高';
+      if(u < 11) return '很高';
+      return '极高';
+    }
+    function hm(iso){
+      return iso ? iso.slice(11, 16) : '--:--';
+    }
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=32.94&longitude=117.36&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max,sunrise,sunset&timezone=Asia%2FShanghai&forecast_days=1')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.current){ throw new Error('bad weather payload'); }
+        var code = d.current.weather_code;
+        var t = Math.round(d.current.temperature_2m);
+        var tmin = Math.round(d.daily.temperature_2m_min[0]);
+        var tmax = Math.round(d.daily.temperature_2m_max[0]);
+        var rain = Math.round(d.daily.precipitation_probability_max[0] || 0);
+        var uv = Math.round(d.daily.uv_index_max[0] || 0);
+        weatherTemp.textContent = t + '℃';
+        weatherDesc.textContent = wmap[String(code)] || '多云';
+        weatherHL.textContent = '今日最高 ' + tmax + '℃ · 最低 ' + tmin + '℃';
+        weatherRain.textContent = '降水 ' + rain + '%';
+        weatherUV.textContent = '紫外线 ' + uvLabel(uv);
+        weatherSun.textContent = '日出 ' + hm(d.daily.sunrise[0]) + ' · 日落 ' + hm(d.daily.sunset[0]);
+        weatherIc.innerHTML = W[wicon(code)];
+        var tips = [];
+        if(rain >= 60){ tips.push('降雨概率较高，出门记得带伞'); }
+        else if(rain >= 40){ tips.push('有降雨可能，可备伞出行'); }
+        if(uv >= 6){ tips.push('紫外线较强，外出注意防晒'); }
+        if(tips.length){
+          weatherTip.textContent = tips.join(' · ');
+          weatherTip.style.display = '';
+        }else{
+          weatherTip.style.display = 'none';
+        }
+      })
+      .catch(function(){
+        weatherTemp.textContent = '--';
+        weatherDesc.textContent = '天气暂不可用';
+        weatherTip.style.display = 'none';
+      });
+  }
 
   /* ---- 回到顶部 ---- */
   backTop.addEventListener('click', function(){
