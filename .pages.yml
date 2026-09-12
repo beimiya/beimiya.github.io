@@ -18,7 +18,7 @@ content:
         label: 分类
         type: select
         options:
-          values: [社区活动, 维保通知, 环境服务, 系统升级, 温馨提示]
+          values: [社区活动, 重要通知, 环境服务, 系统升级, 温馨提示]
       - name: body
         label: 正文
         type: text
