@@ -1,4 +1,5 @@
 media: media
+
 content:
   - name: posts
     label: 小区公告
@@ -21,4 +22,7 @@ content:
           values: [社区活动, 重要通知, 环境服务, 系统升级, 温馨提示]
       - name: body
         label: 正文
-        type: text
+        type: rich-text
+        options:
+          media: media
+          rename: true
