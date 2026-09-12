@@ -66,7 +66,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 
 /* ===== 顶部导航 ===== */
 .site-header{
-  position:fixed;top:58px;left:0;right:0;z-index:100;
+  position:fixed;top:35px;left:0;right:0;z-index:100;
   background:rgba(255,255,255,.86);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
@@ -202,14 +202,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 /* ===== 今日天气条（悬浮页面顶端） ===== */
 .weather-bar{
   position:fixed;top:0;left:0;right:0;z-index:120;
-  background:var(--white);border-bottom:1px solid var(--line);
-  box-shadow:0 2px 12px rgba(30,58,47,.08);
+  background:transparent;border-bottom:none;
+  box-shadow:none;
 }
 .wb-inner{
   max-width:1160px;margin:0 auto;padding:6px 24px;
   display:flex;flex-wrap:nowrap;align-items:center;gap:0 16px;
 }
-section[id]{scroll-margin-top:134px;}
+section[id]{scroll-margin-top:120px;}
 .weather-bar .wb-lead{display:flex;align-items:center;gap:10px;padding-right:18px;border-right:1px solid var(--line);white-space:nowrap;}
 .weather-bar .wb-ic{width:34px;height:34px;border-radius:50%;background:var(--amber);color:var(--white);display:flex;align-items:center;justify-content:center;flex:none;}
 .weather-bar .wb-ic svg{width:18px;height:18px;}
@@ -609,7 +609,7 @@ section[id]{scroll-margin-top:134px;}
   .today-hotline{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:16px;}
   .site-header{top:0;}
   .weather-bar{position:static;background:transparent;border-bottom:none;box-shadow:none;margin-top:14px;padding:0;}
-  .wb-inner{background:var(--white);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px 20px;gap:12px 18px;}
+  .wb-inner{background:var(--white);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px 20px;gap:12px 18px;flex-wrap:wrap;}
   .weather-bar .wb-lead{padding-right:0;border-right:none;width:100%;padding-bottom:8px;margin-bottom:2px;border-bottom:1px solid var(--line);}
   .weather-bar .wb-tip{margin-left:0;text-align:left;max-width:none;}
   .about-points{grid-template-columns:1fr;}
@@ -720,24 +720,6 @@ section[id]{scroll-margin-top:134px;}
           <div class="h-label">24 小时服务热线</div>
           <div class="h-num">待公示</div>
         </div>
-      </div>
-    </div>
-    <div class="weather-bar" id="todayWeather">
-      <div class="wb-inner">
-        <div class="wb-lead">
-          <span class="wb-ic" id="weatherIc">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H8.5a6 6 0 1 1 5.4-8.7A4.5 4.5 0 1 1 17.5 18.5z"/><circle cx="18" cy="7" r="3"/><path d="M18 1.5V3M23 7h-1.5M18 12v-1.5M21.6 3.4l-1 1M14.4 3.4l1 1"/></svg>
-          </span>
-          <div>
-            <div class="wb-title">今日天气 · 蚌山区</div>
-            <div class="wb-now"><b id="weatherTemp">--</b><i id="weatherDesc">加载中…</i></div>
-          </div>
-        </div>
-        <div class="wb-item"><span class="wb-label">今日最高 / 最低</span><span class="wb-val" id="weatherHL">-- / --</span></div>
-        <div class="wb-item"><span class="wb-label">降水概率</span><span class="wb-val" id="weatherRain">--</span></div>
-        <div class="wb-item"><span class="wb-label">紫外线</span><span class="wb-val" id="weatherUV">--</span></div>
-        <div class="wb-item"><span class="wb-label">日出 / 日落</span><span class="wb-val" id="weatherSun">-- / --</span></div>
-        <div class="wb-tip" id="weatherTip" style="display:none;"></div>
       </div>
     </div>
   </div>
@@ -1586,9 +1568,35 @@ section[id]{scroll-margin-top:134px;}
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
+<!-- ===== 今日天气条（body 顶层，避免被 today-bar 层级困住） ===== -->
+<div class="weather-bar" id="todayWeather">
+  <div class="wb-inner">
+    <div class="wb-lead">
+      <span class="wb-ic" id="weatherIc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H8.5a6 6 0 1 1 5.4-8.7A4.5 4.5 0 1 1 17.5 18.5z"/><circle cx="18" cy="7" r="3"/><path d="M18 1.5V3M23 7h-1.5M18 12v-1.5M21.6 3.4l-1 1M14.4 3.4l1 1"/></svg>
+      </span>
+      <span class="wb-loc">今日天气·蚌山区</span>
+      <span class="wb-now"><b id="weatherTemp">--</b><i id="weatherDesc">加载中…</i></span>
+    </div>
+    <div class="wb-item"><span class="wb-label">最高 / 最低</span><span class="wb-val" id="weatherHL">-- / --</span></div>
+    <div class="wb-item"><span class="wb-label">降水概率</span><span class="wb-val" id="weatherRain">--</span></div>
+    <div class="wb-item"><span class="wb-label">紫外线</span><span class="wb-val" id="weatherUV">--</span></div>
+    <div class="wb-item"><span class="wb-label">日出 / 日落</span><span class="wb-val" id="weatherSun">-- / --</span></div>
+    <div class="wb-tip" id="weatherTip" style="display:none;"></div>
+  </div>
+</div>
 <script>
 (function(){
   "use strict";
+
+  /* ---- 天气条：移动端移回信息栏下方（桌面端悬浮于 body 顶层） ---- */
+  (function(){
+    var wb = document.getElementById('todayWeather');
+    if(wb && window.innerWidth <= 768){
+      var box = document.querySelector('.today-bar .container');
+      if(box){ box.appendChild(wb); }
+    }
+  })();
 
   /* ---- 移动端菜单 ---- */
   var navToggle = document.getElementById('navToggle');
