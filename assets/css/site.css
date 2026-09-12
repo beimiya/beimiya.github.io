@@ -202,17 +202,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   display:flex;flex-wrap:nowrap;align-items:center;gap:0 16px;
 }
 section[id]{scroll-margin-top:90px;}
-.weather-bar .wb-lead{display:flex;align-items:center;gap:10px;padding-right:18px;border-right:1px solid var(--line);white-space:nowrap;}
+.weather-bar .wb-lead{display:flex;align-items:center;gap:10px;padding-right:18px;border-right:1px solid rgba(255,255,255,.28);white-space:nowrap;}
 .weather-bar .wb-ic{width:34px;height:34px;border-radius:50%;background:var(--amber);color:var(--white);display:flex;align-items:center;justify-content:center;flex:none;}
 .weather-bar .wb-ic svg{width:18px;height:18px;}
-.weather-bar .wb-loc{font-size:12px;color:var(--muted);letter-spacing:.04em;white-space:nowrap;}
+.weather-bar .wb-loc{font-size:12px;color:rgba(255,255,255,.75);letter-spacing:.04em;white-space:nowrap;}
 .weather-bar .wb-now{display:flex;align-items:baseline;gap:6px;white-space:nowrap;}
-.weather-bar .wb-now b{font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--pine-deep);line-height:1;}
-.weather-bar .wb-now i{font-style:normal;font-size:13px;color:var(--pine-deep);}
+.weather-bar .wb-now b{font-family:var(--font-serif);font-size:22px;font-weight:700;color:#fff;line-height:1;}
+.weather-bar .wb-now i{font-style:normal;font-size:13px;color:rgba(255,255,255,.9);}
 .weather-bar .wb-item{display:flex;align-items:baseline;gap:5px;white-space:nowrap;}
-.weather-bar .wb-item .wb-label{font-size:11px;color:var(--muted);letter-spacing:.02em;}
-.weather-bar .wb-item .wb-val{font-family:var(--font-serif);font-size:14.5px;font-weight:700;color:var(--pine-deep);}
-.weather-bar .wb-tip{margin-left:auto;font-size:12px;color:var(--amber-deep);font-weight:600;white-space:nowrap;}
+.weather-bar .wb-item .wb-label{font-size:11px;color:rgba(255,255,255,.75);letter-spacing:.02em;}
+.weather-bar .wb-item .wb-val{font-family:var(--font-serif);font-size:14.5px;font-weight:700;color:#fff;}
+.weather-bar .wb-tip{margin-left:auto;font-size:12px;color:rgba(255,255,255,.85);font-weight:600;white-space:nowrap;}
 
 /* ===== 关于小区 ===== */
 .about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
@@ -610,20 +610,22 @@ section[id]{scroll-margin-top:90px;}
   .today-hotline{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:16px;}
   .site-header{top:0;}
   .weather-bar{position:absolute;top:72px;left:0;right:0;background:transparent;border-bottom:none;box-shadow:none;margin-top:0;padding:0;}
-  .wb-inner{background:transparent;border:none;box-shadow:none;padding:8px 14px;gap:0 12px;flex-wrap:nowrap;overflow:hidden;font-size:11px;}
-  .weather-bar .wb-lead{padding-right:12px;border-right:1px solid rgba(255,255,255,.28);width:auto;padding-bottom:0;margin-bottom:0;border-bottom:none;flex:none;}
+  .wb-inner{background:transparent;border:none;box-shadow:none;padding:6px 10px;gap:0 10px;flex-wrap:nowrap;overflow:hidden;font-size:10.5px;}
+  .weather-bar .wb-lead{padding-right:10px;border-right:1px solid rgba(255,255,255,.28);width:auto;padding-bottom:0;margin-bottom:0;border-bottom:none;flex:none;gap:6px;}
   .weather-bar .wb-loc{display:none;}
   .weather-bar .wb-tip{display:none;}
+  .weather-bar .wb-ic{width:26px;height:26px;}
+  .weather-bar .wb-ic svg{width:15px;height:15px;}
   .weather-bar{color:var(--white);}
   .weather-bar .wb-now b{color:#fff;}
   .weather-bar .wb-item .wb-label{color:rgba(255,255,255,.75);}
   .weather-bar .wb-item .wb-val{color:#fff;}
   .weather-bar .wb-now i{color:rgba(255,255,255,.9);}
-  .wb-item{white-space:nowrap;flex-shrink:1;min-width:0;}
-  .wb-item .wb-label{font-size:10px;}
-  .wb-item .wb-val{font-size:13px;}
-  .wb-item:has(#weatherSun){display:none;}
-  .wb-now b{font-size:16px;}
+  .wb-item{white-space:nowrap;flex-shrink:1;min-width:0;gap:4px;}
+  .weather-bar .wb-item .wb-label{font-size:10px;}
+  .weather-bar .wb-item .wb-val{font-size:12px;}
+  .weather-bar .wb-item:has(#weatherSun){display:none;}
+  .weather-bar .wb-now b{font-size:15px;}
   .about-points{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .news-grid{grid-template-columns:1fr;}
