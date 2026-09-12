@@ -91,7 +91,7 @@
           </div>
           <div class="member-card">
             <span class="m-role">副主任</span>
-            <span class="m-name">李娜</span>
+            <span class="m-name">李  娜</span>
           </div>
           <div class="member-card">
             <span class="m-role">委员</span>
@@ -105,13 +105,23 @@
             <span class="m-role">委员</span>
             <span class="m-name">谢青杉</span>
           </div>
+        </div>
+        <button class="member-more" id="memberMore" type="button" aria-expanded="false">
+          更多候补委员
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="member-grid member-alt" id="memberAlt" hidden>
           <div class="member-card">
             <span class="m-role">候补委员</span>
-            <span class="m-names">
-              <span class="m-name">王庆伟</span>
-              <span class="m-name">杨玉华</span>
-              <span class="m-name">翟学霞</span>
-            </span>
+            <span class="m-name">王庆伟</span>
+          </div>
+          <div class="member-card">
+            <span class="m-role">候补委员</span>
+            <span class="m-name">杨玉华</span>
+          </div>
+          <div class="member-card">
+            <span class="m-role">候补委员</span>
+            <span class="m-name">翟学霞</span>
           </div>
         </div>
         <p class="c-note">以上成员由业主大会选举产生，成员名单以小区公示为准。</p>
@@ -418,6 +428,16 @@
       var open = card.classList.toggle('open');
       head.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+  });
+
+  /* ---- 更多候补委员 展开/收起 ---- */
+  var memberMore = document.getElementById('memberMore');
+  var memberAlt = document.getElementById('memberAlt');
+  memberMore.addEventListener('click', function(){
+    var open = memberAlt.hidden;
+    memberAlt.hidden = !open;
+    memberMore.setAttribute('aria-expanded', open ? 'true' : 'false');
+    memberMore.classList.toggle('open', open);
   });
 
   /* ---- 移动端菜单 ---- */
