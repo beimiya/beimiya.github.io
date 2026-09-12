@@ -478,6 +478,72 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .back-top:hover{background:var(--pine-deep);}
 .back-top svg{width:22px;height:22px;}
 
+/* ===== 业主委员会 ===== */
+.committee-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;align-items:start;}
+.committee-card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:28px;}
+.committee-card h4{font-family:var(--font-serif);font-size:19px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.committee-card h4 svg{width:20px;height:20px;color:var(--pine);}
+.duty-list li{
+  display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);
+  font-size:14.5px;color:var(--ink-2);line-height:1.7;
+}
+.duty-list li:last-child{border-bottom:none;}
+.duty-list svg{flex:none;width:18px;height:18px;color:var(--amber-deep);margin-top:4px;}
+.member-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.member-card{
+  background:var(--leaf-2);border:1px solid var(--line);border-radius:14px;
+  padding:16px 12px;text-align:center;
+}
+.member-card .m-role{
+  display:inline-block;font-size:11.5px;font-weight:600;color:var(--pine);
+  background:var(--white);border:1px solid var(--line);
+  padding:2px 10px;border-radius:999px;margin-bottom:9px;
+}
+.member-card .m-name{display:block;font-family:var(--font-serif);font-size:16px;font-weight:700;}
+.member-card .m-desc{display:block;font-size:12px;color:var(--muted);margin-top:4px;}
+.c-note{margin-top:14px;font-size:12.5px;color:var(--muted);}
+.doc-wrap{margin-top:42px;display:grid;gap:18px;}
+.doc-card{background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;}
+.doc-head{
+  width:100%;display:flex;align-items:center;gap:14px;text-align:left;
+  padding:22px 26px;transition:background .2s;
+}
+.doc-head:hover{background:var(--leaf-2);}
+.doc-head .d-ic{
+  flex:none;width:44px;height:44px;border-radius:12px;background:var(--pine);
+  color:var(--white);display:flex;align-items:center;justify-content:center;
+}
+.doc-head .d-ic svg{width:22px;height:22px;}
+.doc-head .d-title{font-family:var(--font-serif);font-size:18px;font-weight:700;}
+.doc-head .d-sub{display:block;font-size:12.5px;color:var(--muted);font-weight:400;margin-top:3px;font-family:var(--font-sans);}
+.doc-head .d-arrow{margin-left:auto;flex:none;color:var(--pine);transition:transform .25s;}
+.doc-head .d-arrow svg{width:20px;height:20px;}
+.doc-card.open .doc-head .d-arrow{transform:rotate(180deg);}
+.doc-body{display:none;padding:6px 30px 28px;border-top:1px dashed var(--line);}
+.doc-card.open .doc-body{display:block;}
+.doc-chapter{margin-top:22px;}
+.doc-chapter h5{
+  font-size:15px;font-weight:700;color:var(--pine);
+  display:flex;align-items:center;gap:8px;margin-bottom:10px;
+}
+.doc-chapter h5::before{content:"";width:14px;height:3px;border-radius:2px;background:var(--amber);}
+.doc-chapter ol{list-style:none;counter-reset:item;}
+.doc-chapter ol li{
+  counter-increment:item;position:relative;
+  padding:6px 0 6px 34px;font-size:14px;color:var(--ink-2);line-height:1.8;
+}
+.doc-chapter ol li::before{
+  content:counter(item);position:absolute;left:0;top:8px;
+  width:22px;height:22px;border-radius:7px;background:var(--leaf);
+  color:var(--pine);font-size:12px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+}
+.doc-note{margin-top:4px;font-size:13px;color:var(--muted);text-align:center;}
+@media (max-width:768px){
+  .committee-grid{grid-template-columns:1fr;}
+  .member-grid{grid-template-columns:repeat(2,1fr);}
+}
+
 /* ===== 响应式 ===== */
 @media (max-width:1024px){
   .service-grid{grid-template-columns:repeat(3,1fr);}
@@ -557,6 +623,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       <a href="#home" class="active">首页</a>
       <a href="#about">小区介绍</a>
       <a href="#news">最新公告</a>
+      <a href="#committee">业主委员会</a>
       <a href="#service">物业服务</a>
       <a href="#facilities">小区设施</a>
       <a href="#around">周边配套</a>
@@ -619,7 +686,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
         </span>
         <div>
           <div class="h-label">24 小时服务热线</div>
-          <div class="h-num">0552-XXXXXXX</div>
+          <div class="h-num">待公示</div>
         </div>
       </div>
     </div>
@@ -733,6 +800,212 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   </div>
 </section>
 
+<!-- ===== 业主委员会 ===== -->
+<section class="section section--sage" id="committee">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Owner Committee</span>
+      <h2 class="sec-title">业主委员会</h2>
+      <p class="sec-sub">米亚花园（北区）业主委员会是业主大会的执行机构，依法履行职责，维护全体业主的合法权益。</p>
+    </div>
+
+    <div class="committee-grid">
+      <div class="committee-card">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          业委会职责
+        </h4>
+        <ul class="duty-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            召集业主大会会议，报告物业管理的实施情况
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            代表业主与业主大会选聘的物业服务企业签订物业服务合同
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            及时了解业主、物业使用人的意见和建议，监督和协助物业服务企业履行物业服务合同
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            监督管理规约的实施
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            执行业主大会的决定，履行业主大会赋予的其他职责
+          </li>
+        </ul>
+        <p class="c-note">依据《物业管理条例》第十五条、《民法典》第二百八十条</p>
+      </div>
+
+      <div class="committee-card">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          业主委员会成员
+        </h4>
+        <div class="member-grid">
+          <div class="member-card">
+            <span class="m-role">主任</span>
+            <span class="m-name">待公示</span>
+            <span class="m-desc">栋 · 室</span>
+          </div>
+          <div class="member-card">
+            <span class="m-role">副主任</span>
+            <span class="m-name">待公示</span>
+            <span class="m-desc">栋 · 室</span>
+          </div>
+          <div class="member-card">
+            <span class="m-role">委员</span>
+            <span class="m-name">待公示</span>
+            <span class="m-desc">栋 · 室</span>
+          </div>
+          <div class="member-card">
+            <span class="m-role">委员</span>
+            <span class="m-name">待公示</span>
+            <span class="m-desc">栋 · 室</span>
+          </div>
+          <div class="member-card">
+            <span class="m-role">委员</span>
+            <span class="m-name">待公示</span>
+            <span class="m-desc">栋 · 室</span>
+          </div>
+          <div class="member-card">
+            <span class="m-role">候补委员</span>
+            <span class="m-name">待公示</span>
+            <span class="m-desc">栋 · 室</span>
+          </div>
+        </div>
+        <p class="c-note">委员应当由热心公益事业、责任心强、具有一定组织能力的业主担任；成员名单以小区公示为准。</p>
+      </div>
+    </div>
+
+    <div class="doc-wrap">
+      <div class="doc-card" id="docRule">
+        <button class="doc-head" type="button" aria-expanded="false">
+          <span class="d-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </span>
+          <span>
+            <span class="d-title">米亚花园（北区）管理规约</span>
+            <span class="d-sub">对物业的使用、维护、管理及业主共同利益等事项作出的约定，对全体业主具有约束力</span>
+          </span>
+          <span class="d-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </button>
+        <div class="doc-body">
+          <div class="doc-chapter">
+            <h5>第一章 总则</h5>
+            <ol>
+              <li>为维护米亚花园（北区）全体业主和物业使用人的合法权益，保障物业的安全与合理使用，维护公共环境和秩序，根据《民法典》《物业管理条例》等法律法规制定本规约。</li>
+              <li>本规约对全体业主及物业使用人均具有约束力，物业使用人应遵守本规约相关规定。</li>
+              <li>业主在物业管理活动中，享有接受物业服务、参加业主大会行使投票权、选举与被选举、监督业委会与物业服务企业、对共有部分享有知情权和监督权等权利。</li>
+            </ol>
+          </div>
+          <div class="doc-chapter">
+            <h5>第二章 物业基本情况</h5>
+            <ol>
+              <li>小区地址：蚌埠市蚌山区黄庄街道工农路 399 号。</li>
+              <li>小区建成于 2010 年，总户数 1301 户，绿化率约 35%，配套米亚幼儿园、中心会所、农贸市场等。</li>
+            </ol>
+          </div>
+          <div class="doc-chapter">
+            <h5>第三章 业主的权利与义务</h5>
+            <ol>
+              <li>业主应遵守法律、法规以及本规约，按照有利于物业使用、安全、整洁以及公平合理的原则，正确处理相邻关系。</li>
+              <li>业主应按约定缴纳物业服务费用、专项维修资金及业主大会决定分摊的费用。</li>
+              <li>业主应配合物业服务企业执行政府依法实施的应急处置措施和其他管理措施。</li>
+            </ol>
+          </div>
+          <div class="doc-chapter">
+            <h5>第四章 物业的使用与管理</h5>
+            <ol>
+              <li>业主不得违反法律法规以及本规约，将住宅改变为经营性用房；确需改变的，应经有利害关系的业主一致同意。</li>
+              <li>装饰装修房屋应事先告知物业服务企业，遵守施工时间与作业规范，不得影响他人正常生活。</li>
+              <li>合理使用电梯、消防、给排水、供电等共用设施设备，爱护公共部位和绿地景观。</li>
+              <li>车辆按划定位置停放，服从管理，不得占用消防通道；电动自行车不得违规进楼入户充电。</li>
+              <li>饲养宠物应遵守相关规定，做好防疫与看护，避免扰邻和污染环境。</li>
+              <li>自觉实行生活垃圾分类，不随意丢弃垃圾、排放污染物或制造噪声，不高空抛物。</li>
+              <li>不得违章搭建、侵占公共通道和共有空间，不得擅自改变房屋承重结构。</li>
+            </ol>
+          </div>
+          <div class="doc-chapter">
+            <h5>第五章 物业服务与费用</h5>
+            <ol>
+              <li>本小区可以自行管理物业，也可以委托物业服务企业或其他管理人管理；选聘和解聘物业服务企业由业主大会共同决定。</li>
+              <li>业主应按物业服务合同的约定按时足额缴纳物业服务费用。</li>
+              <li>建筑物及其附属设施的维修资金属于业主共有，其筹集、使用情况应当定期公布，接受业主监督。</li>
+            </ol>
+          </div>
+          <div class="doc-chapter">
+            <h5>第六章 违约责任与附则</h5>
+            <ol>
+              <li>业主损害他人合法权益的，业主大会、业主委员会有权依照法律法规和本规约，请求行为人停止侵害、排除妨碍、消除危险、恢复原状、赔偿损失。</li>
+              <li>本规约由业主大会表决通过后生效，修改亦须经业主大会依法表决通过；未作约定的事项，依照法律法规执行。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-card" id="docProcedure">
+        <button class="doc-head" type="button" aria-expanded="false">
+          <span class="d-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </span>
+          <span>
+            <span class="d-title">米亚花园（北区）业主大会及业主委员会议事规则</span>
+            <span class="d-sub">就业主大会的议事方式、表决程序、业委会组成和成员任期等事项作出约定</span>
+          </span>
+          <span class="d-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </button>
+        <div class="doc-body">
+          <div class="doc-chapter">
+            <h5>第一章 总则</h5>
+            <ol>
+              <li>为规范业主大会和业主委员会的活动，保障业主依法行使共同管理权，根据《民法典》《物业管理条例》等法律法规制定本规则。</li>
+              <li>本小区物业管理区域内全体业主组成业主大会；业主大会代表和维护全体业主在物业管理活动中的合法权益。</li>
+            </ol>
+          </div>
+          <div class="doc-chapter">
+            <h5>第二章 业主大会</h5>
+            <ol>
+              <li>下列事项由业主共同决定：制定和修改业主大会议事规则；制定和修改管理规约；选举业主委员会或更换业主委员会成员；选聘和解聘物业服务企业；使用、筹集维修资金；改建、重建建筑物及其附属设施；改变共有部分用途或利用共有部分从事经营活动；有关共有和共同管理权利的其他重大事项。</li>
+              <li>业主共同决定事项，应当由专有部分面积占比三分之二以上且人数占比三分之二以上的业主参与表决。</li>
+              <li>筹集维修资金、改建重建建筑物及其附属设施、改变共有部分用途等事项，应经参与表决专有部分面积四分之三以上且参与表决人数四分之三以上的业主同意；其他事项应经参与表决专有部分面积过半数且参与表决人数过半数的业主同意。</li>
+              <li>业主大会会议可以采用集体讨论形式，也可以采用书面征求意见形式；会议应于召开 15 日以前通知全体业主，并同时告知相关的居民委员会。</li>
+              <li>业主大会定期会议按本规则规定召开；经 20% 以上的业主提议，业主委员会应当组织召开业主大会临时会议。</li>
+            </ol>
+          </div>
+          <div class="doc-chapter">
+            <h5>第三章 业主委员会</h5>
+            <ol>
+              <li>业主委员会由业主大会选举产生，设主任、副主任及委员若干名；委员应当由热心公益事业、责任心强、具有一定组织能力的业主担任。</li>
+              <li>业主委员会应当自选举产生之日起 30 日内，向物业所在地的区人民政府房地产行政主管部门和街道办事处备案。</li>
+              <li>业主委员会执行业主大会的决定事项，履行召集业主大会、签订物业服务合同、监督物业服务企业履约、监督管理规约实施等职责。</li>
+              <li>业主委员会会议应当定期召开，重大事项集体讨论决定，并做好会议记录；成员任期及换届办法按本规则及业主大会决定执行。</li>
+              <li>业主委员会应妥善保管印章、档案和财务资料，经费收支向业主公开，接受业主监督。</li>
+            </ol>
+          </div>
+          <div class="doc-chapter">
+            <h5>第四章 附则</h5>
+            <ol>
+              <li>业主大会、业主委员会应当依法履行职责，不得作出与物业管理无关的决定；应配合公安机关、居民委员会做好相关工作并接受其指导和监督。</li>
+              <li>业主大会或业主委员会作出的决定侵害业主合法权益的，受侵害的业主可以依法请求人民法院予以撤销。</li>
+              <li>本规则由业主大会表决通过后生效，修改亦须经业主大会依法表决通过。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <p class="doc-note">以上文件为依法拟定的参考框架，正式文本以业主大会表决通过并备案的版本为准，全文可在小区公示栏查阅。</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== 物业服务 ===== -->
 <section class="section section--white" id="service" style="background:var(--white);">
   <div class="container">
@@ -798,7 +1071,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       </div>
       <div class="svc-info">
         <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>服务中心办公时间：<b>每日 8:30 - 20:00</b></span>
-        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg>夜间及节假日值班：<b>0552-XXXXXXX</b></span>
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg>夜间及节假日值班：<b>待公示</b></span>
         <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>服务中心位置：<b>工农路 399 号米亚花园（北区）</b></span>
       </div>
     </div>
@@ -996,12 +1269,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
         <table class="phone-table">
           <thead><tr><th>服务项目</th><th>联系方式</th></tr></thead>
           <tbody>
-            <tr><td>物业服务中心（24 小时）</td><td>0552-XXXXXXX</td></tr>
-            <tr><td>电梯应急 / 夜间值班</td><td>0552-XXXXXXX</td></tr>
+            <tr><td>物业服务中心（24 小时）</td><td>待公示</td></tr>
+            <tr><td>电梯应急 / 夜间值班</td><td>待公示</td></tr>
             <tr><td>国家电网服务热线</td><td>95598</td></tr>
-            <tr><td>自来水公司（示例）</td><td>0552-XXXXXXX</td></tr>
-            <tr><td>燃气公司（示例）</td><td>0552-XXXXXXX</td></tr>
-            <tr><td>有线电视 / 宽带（示例）</td><td>0552-XXXXXXX</td></tr>
+            <tr><td>自来水公司（示例）</td><td>待公示</td></tr>
+            <tr><td>燃气公司（示例）</td><td>待公示</td></tr>
+            <tr><td>有线电视 / 宽带（示例）</td><td>待公示</td></tr>
             <tr><td>火警 / 急救 / 报警</td><td>119 / 120 / 110</td></tr>
           </tbody>
         </table>
@@ -1067,7 +1340,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
         <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
         <div>
           <h4>服务热线</h4>
-          <p><b>0552-XXXXXXX</b>（24 小时）<br>投诉建议专线：0552-XXXXXXX</p>
+          <p><b>待公示</b>（24 小时）<br>投诉建议专线：待公示</p>
           <p class="c-note">报修、咨询、投诉建议均可拨打</p>
         </div>
       </div>
@@ -1120,6 +1393,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
         <ul>
           <li><a href="#about">小区介绍</a></li>
           <li><a href="#news">最新公告</a></li>
+          <li><a href="#committee">业主委员会</a></li>
           <li><a href="#service">物业服务</a></li>
           <li><a href="#events">社区活动</a></li>
         </ul>
@@ -1136,7 +1410,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       <div class="footer-col">
         <h5>联系方式</h5>
         <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>蚌埠市蚌山区工农路 399 号米亚花园（北区）</p>
-        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg>服务热线：0552-XXXXXXX（24 小时）</p>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg>服务热线：待公示（24 小时）</p>
         <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>service@miyahuayuan.example.com</p>
       </div>
     </div>
@@ -1179,7 +1453,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     updateActiveNav();
   }
   window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
 
   /* ---- 导航高亮 ---- */
   var sections = [];
@@ -1189,6 +1462,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     var el = document.getElementById(id);
     if(el){ sections.push({id:id, el:el, link:a}); }
   });
+  onScroll();
   function updateActiveNav(){
     var pos = window.scrollY + 120;
     var current = sections[0] ? sections[0].id : '';
@@ -1218,6 +1492,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       var open = card.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       btn.firstChild.textContent = open ? '收起详情 ' : '查看详情 ';
+    });
+  });
+
+  /* ---- 规约/议事规则 展开/收起 ---- */
+  document.querySelectorAll('.doc-card').forEach(function(card){
+    var head = card.querySelector('.doc-head');
+    head.addEventListener('click', function(){
+      var open = card.classList.toggle('open');
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   });
 
