@@ -38,11 +38,30 @@
     </button>
   </div>
 </header>
-
 <main>
 <!-- ===== Hero 首屏 ===== -->
 <section class="hero" id="home">
   <div class="hero-bg" style="background-image:url('assets/images/hero.jpg');"></div>
+<!-- ===== 今日天气条（body 顶层，避免被 today-bar 层级困住） ===== -->
+<div class="weather-bar" id="todayWeather">
+  <div class="wb-inner">
+    <div class="wb-lead">
+      <span class="wb-ic" id="weatherIc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H8.5a6 6 0 1 1 5.4-8.7A4.5 4.5 0 1 1 17.5 18.5z"/><circle cx="18" cy="7" r="3"/><path d="M18 1.5V3M23 7h-1.5M18 12v-1.5M21.6 3.4l-1 1M14.4 3.4l1 1"/></svg>
+      </span>
+      <span class="wb-loc">今日天气·蚌山区</span>
+      <span class="wb-now"><b id="weatherTemp">--</b><i id="weatherDesc">加载中…</i></span>
+    </div>
+    <div class="wb-item"><span class="wb-label">最高 / 最低</span><span class="wb-val" id="weatherHL">-- / --</span></div>
+    <div class="wb-item"><span class="wb-label">降水概率</span><span class="wb-val" id="weatherRain">--</span></div>
+    <div class="wb-item"><span class="wb-label">紫外线</span><span class="wb-val" id="weatherUV">--</span></div>
+    <div class="wb-item"><span class="wb-label">日出 / 日落</span><span class="wb-val" id="weatherSun">-- / --</span></div>
+    <div class="wb-tip" id="weatherTip" style="display:none;"></div>
+  </div>
+</div>
+
+
+
   <div class="container hero-inner">
     <span class="hero-tag">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -583,35 +602,9 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<!-- ===== 今日天气条（body 顶层，避免被 today-bar 层级困住） ===== -->
-<div class="weather-bar" id="todayWeather">
-  <div class="wb-inner">
-    <div class="wb-lead">
-      <span class="wb-ic" id="weatherIc">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H8.5a6 6 0 1 1 5.4-8.7A4.5 4.5 0 1 1 17.5 18.5z"/><circle cx="18" cy="7" r="3"/><path d="M18 1.5V3M23 7h-1.5M18 12v-1.5M21.6 3.4l-1 1M14.4 3.4l1 1"/></svg>
-      </span>
-      <span class="wb-loc">今日天气·蚌山区</span>
-      <span class="wb-now"><b id="weatherTemp">--</b><i id="weatherDesc">加载中…</i></span>
-    </div>
-    <div class="wb-item"><span class="wb-label">最高 / 最低</span><span class="wb-val" id="weatherHL">-- / --</span></div>
-    <div class="wb-item"><span class="wb-label">降水概率</span><span class="wb-val" id="weatherRain">--</span></div>
-    <div class="wb-item"><span class="wb-label">紫外线</span><span class="wb-val" id="weatherUV">--</span></div>
-    <div class="wb-item"><span class="wb-label">日出 / 日落</span><span class="wb-val" id="weatherSun">-- / --</span></div>
-    <div class="wb-tip" id="weatherTip" style="display:none;"></div>
-  </div>
-</div>
 <script>
 (function(){
   "use strict";
-
-  /* ---- 天气条：移动端移回信息栏下方（桌面端悬浮于 body 顶层） ---- */
-  (function(){
-    var wb = document.getElementById('todayWeather');
-    if(wb && window.innerWidth <= 768){
-      var box = document.querySelector('.today-bar .container');
-      if(box){ box.appendChild(wb); }
-    }
-  })();
 
   /* ---- 移动端菜单 ---- */
   var navToggle = document.getElementById('navToggle');

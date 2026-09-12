@@ -58,8 +58,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 
 /* ===== 顶部导航 ===== */
 .site-header{
-  position:fixed;top:35px;left:0;right:0;z-index:100;
-  background:rgba(255,255,255,.86);
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.8);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
   border-bottom:1px solid transparent;
@@ -99,7 +99,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .hero{
   position:relative;min-height:92vh;
   display:flex;align-items:flex-end;
-  padding:140px 0 0;
+  padding:0;
   color:var(--white);
   overflow:hidden;
 }
@@ -191,9 +191,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .today-hotline .h-label{font-size:12px;color:var(--muted);letter-spacing:.06em;}
 .today-hotline .h-num{font-family:var(--font-serif);font-size:19px;font-weight:700;color:var(--amber-deep);white-space:nowrap;}
 
-/* ===== 今日天气条（悬浮页面顶端） ===== */
+/* ===== 今日天气条（位于菜单栏下方，随页面滚动消失） ===== */
 .weather-bar{
-  position:fixed;top:0;left:0;right:0;z-index:120;
+  position:absolute;top:72px;left:0;right:0;z-index:2;
   background:transparent;border-bottom:none;
   box-shadow:none;
 }
@@ -201,7 +201,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   max-width:1160px;margin:0 auto;padding:6px 24px;
   display:flex;flex-wrap:nowrap;align-items:center;gap:0 16px;
 }
-section[id]{scroll-margin-top:120px;}
+section[id]{scroll-margin-top:90px;}
 .weather-bar .wb-lead{display:flex;align-items:center;gap:10px;padding-right:18px;border-right:1px solid var(--line);white-space:nowrap;}
 .weather-bar .wb-ic{width:34px;height:34px;border-radius:50%;background:var(--amber);color:var(--white);display:flex;align-items:center;justify-content:center;flex:none;}
 .weather-bar .wb-ic svg{width:18px;height:18px;}
@@ -599,7 +599,7 @@ section[id]{scroll-margin-top:120px;}
   .nav-links a{padding:13px 16px;font-size:16px;border-radius:12px;}
   .nav-cta{margin-left:0;text-align:center;}
   .nav-toggle{display:flex;}
-  .hero{padding-top:110px;min-height:88vh;}
+  .hero{padding-top:0;min-height:88vh;}
   .hero-stats{grid-template-columns:repeat(2,1fr);gap:14px 0;}
   .hstat:nth-child(3){border-left:none;}
   .hstat:nth-child(n+3){border-top:1px solid rgba(255,255,255,.2);padding-top:14px;}
@@ -608,8 +608,8 @@ section[id]{scroll-margin-top:120px;}
   .today-msg .t-text{white-space:normal;}
   .today-hotline{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:16px;}
   .site-header{top:0;}
-  .weather-bar{position:static;background:transparent;border-bottom:none;box-shadow:none;margin-top:14px;padding:0;}
-  .wb-inner{background:var(--white);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px 20px;gap:12px 18px;flex-wrap:wrap;}
+  .weather-bar{position:absolute;top:72px;left:0;right:0;background:transparent;border-bottom:none;box-shadow:none;margin-top:0;padding:0;}
+  .wb-inner{background:transparent;border:none;box-shadow:none;padding:16px 20px;gap:12px 18px;flex-wrap:wrap;}
   .weather-bar .wb-lead{padding-right:0;border-right:none;width:100%;padding-bottom:8px;margin-bottom:2px;border-bottom:1px solid var(--line);}
   .weather-bar .wb-tip{margin-left:0;text-align:left;max-width:none;}
   .about-points{grid-template-columns:1fr;}
