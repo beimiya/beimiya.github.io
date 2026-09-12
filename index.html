@@ -1,11 +1,1228 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>米亚花园（北区）</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阳光里小区 · 宜居生活社区</title>
+<meta name="description" content="阳光里小区官方网站：小区介绍、最新公告、物业服务、周边配套与便民信息一站式查询。">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+/* ===== 基础与设计变量 ===== */
+:root{
+  --ink:#1E3A2F;
+  --ink-2:#3D5248;
+  --pine:#2F6B4F;
+  --pine-deep:#24543E;
+  --leaf:#E8EFE9;
+  --leaf-2:#F1F6F1;
+  --sand:#F6F3EC;
+  --amber:#D98E2B;
+  --amber-deep:#B8741C;
+  --amber-soft:#F7EAD4;
+  --white:#FFFFFF;
+  --muted:#5F7068;
+  --line:#DCE5DE;
+  --shadow:0 10px 30px rgba(30,58,47,.10);
+  --shadow-sm:0 4px 14px rgba(30,58,47,.08);
+  --radius:16px;
+  --font-serif:'Noto Serif SC',Georgia,'Songti SC','SimSun',serif;
+  --font-sans:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-sans);
+  color:var(--ink);
+  background:var(--sand);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+.container{max-width:1160px;margin:0 auto;padding:0 24px;}
+
+/* ===== 通用区块 ===== */
+.section{padding:88px 0;}
+.section--light{background:var(--white);}
+.section--leaf{background:var(--leaf-2);}
+.section--sand{background:var(--sand);}
+.sec-head{margin-bottom:48px;max-width:640px;}
+.sec-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:500;letter-spacing:.14em;color:var(--pine);
+  text-transform:uppercase;
+}
+.sec-eyebrow::before{content:"";width:26px;height:3px;border-radius:2px;background:var(--amber);}
+.sec-title{
+  font-family:var(--font-serif);font-size:34px;font-weight:700;
+  margin-top:12px;line-height:1.35;letter-spacing:.02em;
+}
+.sec-sub{margin-top:14px;color:var(--muted);font-size:15px;}
+.sec-head--center{margin-left:auto;margin-right:auto;text-align:center;}
+.sec-head--center .sec-eyebrow{justify-content:center;}
+.sec-head--center .sec-eyebrow::after{content:"";width:26px;height:3px;border-radius:2px;background:var(--amber);}
+
+/* ===== 顶部导航 ===== */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,box-shadow .3s;
+}
+.site-header.scrolled{border-bottom-color:var(--line);box-shadow:0 6px 20px rgba(30,58,47,.07);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-logo{
+  width:42px;height:42px;border-radius:12px;
+  background:var(--pine);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-sm);
+}
+.brand-name{font-family:var(--font-serif);font-size:19px;font-weight:700;letter-spacing:.04em;}
+.brand-sub{display:block;font-size:10px;letter-spacing:.3em;color:var(--muted);font-weight:500;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{
+  display:inline-block;padding:10px 14px;border-radius:10px;
+  font-size:14.5px;color:var(--ink-2);font-weight:500;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--pine);background:var(--leaf);}
+.nav-links a.active{color:var(--pine);background:var(--leaf);font-weight:600;}
+.nav-cta{
+  margin-left:10px;
+  background:var(--amber);color:var(--white);
+  padding:10px 20px;border-radius:999px;font-size:14px;font-weight:600;
+  box-shadow:var(--shadow-sm);transition:background .2s,transform .2s;
+}
+.nav-cta:hover{background:var(--amber-deep);transform:translateY(-1px);}
+.nav-toggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;border-radius:10px;color:var(--ink);}
+.nav-toggle:hover{background:var(--leaf);}
+.nav-toggle svg{width:24px;height:24px;}
+
+/* ===== Hero 首屏 ===== */
+.hero{
+  position:relative;min-height:92vh;
+  display:flex;align-items:flex-end;
+  padding:140px 0 0;
+  color:var(--white);
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background-size:cover;background-position:center;
+}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(16,38,29,.28) 0%,rgba(16,38,29,.12) 40%,rgba(14,32,25,.78) 100%);
+}
+.hero-inner{position:relative;z-index:2;width:100%;padding-bottom:56px;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.16);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.35);
+  padding:7px 16px;border-radius:999px;
+  font-size:13px;letter-spacing:.08em;font-weight:500;
+}
+.hero-title{
+  font-family:var(--font-serif);
+  font-size:clamp(38px,6vw,66px);font-weight:900;
+  line-height:1.22;letter-spacing:.03em;
+  margin:22px 0 16px;
+}
+.hero-title .hl{color:#FFD9A0;}
+.hero-sub{
+  font-size:clamp(15px,1.6vw,18px);font-weight:300;
+  max-width:560px;color:rgba(255,255,255,.92);
+}
+.hero-actions{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:0 26px;border-radius:999px;
+  font-size:15px;font-weight:600;transition:transform .2s,box-shadow .2s,background .2s;
+}
+.btn--amber{background:var(--amber);color:var(--white);box-shadow:0 8px 22px rgba(217,142,43,.35);}
+.btn--amber:hover{background:var(--amber-deep);transform:translateY(-2px);}
+.btn--ghost{border:1.5px solid rgba(255,255,255,.7);color:var(--white);}
+.btn--ghost:hover{background:rgba(255,255,255,.14);transform:translateY(-2px);}
+.btn--outline{border:1.5px solid var(--pine);color:var(--pine);}
+.btn--outline:hover{background:var(--leaf);}
+.hero-stats{
+  margin-top:52px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:rgba(255,255,255,.13);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:20px;padding:22px 10px;
+}
+.hstat{text-align:center;padding:6px 10px;}
+.hstat + .hstat{border-left:1px solid rgba(255,255,255,.25);}
+.hstat-num{font-family:var(--font-serif);font-size:clamp(22px,2.6vw,32px);font-weight:700;color:#FFD9A0;}
+.hstat-label{font-size:12.5px;letter-spacing:.1em;color:rgba(255,255,255,.85);margin-top:2px;}
+
+/* ===== 今日社区信息栏（签名元素） ===== */
+.today-bar{margin-top:-44px;position:relative;z-index:5;}
+.today-card{
+  background:var(--white);border-radius:20px;box-shadow:var(--shadow);
+  border:1px solid var(--line);
+  display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;
+  padding:22px 28px;
+}
+.today-date{
+  display:flex;align-items:center;gap:14px;
+  padding-right:22px;border-right:1px solid var(--line);
+}
+.today-date .d-num{
+  width:56px;height:64px;border-radius:12px;background:var(--pine);color:var(--white);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.today-date .d-num b{font-family:var(--font-serif);font-size:24px;line-height:1;}
+.today-date .d-num span{font-size:11px;letter-spacing:.1em;margin-top:4px;opacity:.85;}
+.today-date .d-info .d-week{font-size:13px;color:var(--muted);}
+.today-date .d-info .d-text{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-top:2px;}
+.today-msg{display:flex;align-items:center;gap:14px;min-width:0;}
+.today-msg .ic{
+  flex:none;width:46px;height:46px;border-radius:12px;background:var(--amber-soft);
+  color:var(--amber-deep);display:flex;align-items:center;justify-content:center;
+}
+.today-msg .ic svg{width:24px;height:24px;}
+.today-msg .t-title{font-size:14px;font-weight:600;}
+.today-msg .t-text{font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:420px;}
+.today-hotline{display:flex;align-items:center;gap:14px;padding-left:22px;border-left:1px solid var(--line);}
+.today-hotline .ic{
+  width:46px;height:46px;border-radius:50%;background:var(--amber);color:var(--white);
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.today-hotline .ic svg{width:22px;height:22px;}
+.today-hotline .h-label{font-size:12px;color:var(--muted);letter-spacing:.06em;}
+.today-hotline .h-num{font-family:var(--font-serif);font-size:19px;font-weight:700;color:var(--amber-deep);white-space:nowrap;}
+
+/* ===== 关于小区 ===== */
+.about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
+.about-media{position:relative;}
+.about-media .main-img{border-radius:20px;box-shadow:var(--shadow);aspect-ratio:3/2;object-fit:cover;width:100%;}
+.about-media .float-card{
+  position:absolute;left:-22px;bottom:-22px;
+  background:var(--white);border-radius:14px;box-shadow:var(--shadow);
+  padding:16px 20px;display:flex;align-items:center;gap:14px;
+  border:1px solid var(--line);
+}
+.float-card .f-ic{
+  width:44px;height:44px;border-radius:12px;background:var(--leaf);
+  color:var(--pine);display:flex;align-items:center;justify-content:center;
+}
+.float-card .f-ic svg{width:24px;height:24px;}
+.float-card .f-num{font-family:var(--font-serif);font-size:20px;font-weight:700;line-height:1.2;}
+.float-card .f-label{font-size:12.5px;color:var(--muted);}
+.about-body p{color:var(--ink-2);font-size:15.5px;margin-bottom:16px;}
+.about-body p:last-of-type{margin-bottom:0;}
+.about-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0 30px;}
+.apoint{
+  display:flex;align-items:center;gap:10px;
+  background:var(--leaf-2);border:1px solid var(--line);
+  border-radius:12px;padding:12px 14px;font-size:14px;font-weight:500;color:var(--ink-2);
+}
+.apoint svg{width:18px;height:18px;color:var(--pine);flex:none;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px;}
+.stat-card{
+  background:var(--white);border:1px solid var(--line);border-radius:16px;
+  padding:26px 20px;text-align:center;transition:transform .25s,box-shadow .25s;
+}
+.stat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm);}
+.stat-card .s-num{font-family:var(--font-serif);font-size:30px;font-weight:700;color:var(--pine);}
+.stat-card .s-unit{font-size:13px;color:var(--amber-deep);font-weight:600;margin-left:2px;}
+.stat-card .s-label{font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.04em;}
+.bar-row{margin-top:14px;}
+.bar-track{height:8px;border-radius:99px;background:var(--leaf);overflow:hidden;margin-top:10px;}
+.bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--pine),#4C8A6B);}
+
+/* ===== 公告 ===== */
+.news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+.news-card{
+  position:relative;background:var(--white);border:1px solid var(--line);
+  border-radius:18px;padding:26px 26px 22px;overflow:hidden;
+  transition:transform .25s,box-shadow .25s;
+}
+.news-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--pine),var(--amber));
+}
+.news-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.news-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.news-badge{
+  font-size:12px;font-weight:600;letter-spacing:.05em;
+  background:var(--leaf);color:var(--pine);
+  padding:4px 12px;border-radius:999px;
+}
+.news-date{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.news-date svg{width:14px;height:14px;}
+.news-title{font-family:var(--font-serif);font-size:19px;font-weight:700;line-height:1.5;margin-bottom:10px;}
+.news-desc{font-size:14px;color:var(--muted);line-height:1.8;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.news-more{
+  margin-top:14px;display:inline-flex;align-items:center;gap:6px;
+  color:var(--pine);font-size:13.5px;font-weight:600;
+}
+.news-more svg{width:15px;height:15px;transition:transform .2s;}
+.news-card.open .news-more svg{transform:rotate(180deg);}
+.news-full{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);font-size:14px;color:var(--ink-2);line-height:1.9;}
+.news-card.open .news-full{display:block;}
+.news-card.open .news-desc{display:none;}
+
+/* ===== 物业服务 ===== */
+.service-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+.service-item{
+  background:var(--white);border:1px solid var(--line);border-radius:16px;
+  padding:26px 16px;text-align:center;transition:transform .25s,box-shadow .25s;
+}
+.service-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm);}
+.service-item .s-ic{
+  width:58px;height:58px;margin:0 auto 14px;border-radius:16px;
+  background:var(--leaf);color:var(--pine);
+  display:flex;align-items:center;justify-content:center;
+}
+.service-item .s-ic svg{width:28px;height:28px;}
+.service-item h4{font-size:15.5px;font-weight:600;margin-bottom:6px;}
+.service-item p{font-size:12.5px;color:var(--muted);line-height:1.6;}
+.process-wrap{
+  margin-top:56px;background:var(--white);border:1px solid var(--line);
+  border-radius:20px;padding:38px 34px;
+}
+.process-title{font-family:var(--font-serif);font-size:22px;font-weight:700;margin-bottom:30px;display:flex;align-items:center;gap:12px;}
+.process-title .p-ic{
+  width:42px;height:42px;border-radius:12px;background:var(--amber-soft);
+  color:var(--amber-deep);display:flex;align-items:center;justify-content:center;
+}
+.process-title .p-ic svg{width:22px;height:22px;}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;}
+.process-steps::before{
+  content:"";position:absolute;top:29px;left:12%;right:12%;
+  height:2px;background:var(--line);
+}
+.step{position:relative;text-align:center;}
+.step-num{
+  position:relative;z-index:2;width:58px;height:58px;margin:0 auto 14px;
+  border-radius:50%;background:var(--white);border:2px solid var(--pine);
+  color:var(--pine);font-family:var(--font-serif);font-size:20px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.step h5{font-size:15px;font-weight:600;margin-bottom:6px;}
+.step p{font-size:13px;color:var(--muted);line-height:1.65;}
+.svc-info{
+  margin-top:40px;display:flex;flex-wrap:wrap;gap:14px;
+  background:var(--leaf-2);border:1px solid var(--line);border-radius:16px;padding:20px 24px;
+}
+.svc-info .si{
+  display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2);
+}
+.svc-info .si svg{width:18px;height:18px;color:var(--pine);flex:none;}
+.svc-info .si b{color:var(--pine);}
+
+/* ===== 小区设施 ===== */
+.facility-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.facility-card{
+  background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  transition:transform .25s,box-shadow .25s;
+}
+.facility-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.facility-card .f-img{aspect-ratio:16/10;object-fit:cover;width:100%;}
+.facility-card .f-body{padding:20px 22px 22px;}
+.facility-card h4{font-family:var(--font-serif);font-size:17px;font-weight:700;display:flex;align-items:center;gap:9px;}
+.facility-card h4 svg{width:19px;height:19px;color:var(--pine);}
+.facility-card p{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.7;}
+.facility-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px;}
+.fmini{
+  background:var(--leaf-2);border:1px solid var(--line);border-radius:14px;
+  padding:18px 14px;text-align:center;
+}
+.fmini .fm-ic{width:40px;height:40px;margin:0 auto 10px;border-radius:11px;background:var(--white);color:var(--pine);display:flex;align-items:center;justify-content:center;}
+.fmini .fm-ic svg{width:20px;height:20px;}
+.fmini h5{font-size:13.5px;font-weight:600;margin-bottom:2px;}
+.fmini p{font-size:12px;color:var(--muted);}
+
+/* ===== 周边配套 ===== */
+.around-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+.around-card{
+  background:var(--white);border:1px solid var(--line);border-radius:18px;
+  padding:26px 28px;display:flex;gap:20px;align-items:flex-start;
+  transition:transform .25s,box-shadow .25s;
+}
+.around-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm);}
+.around-card .a-ic{
+  flex:none;width:56px;height:56px;border-radius:15px;
+  display:flex;align-items:center;justify-content:center;color:var(--white);
+}
+.around-card .a-ic svg{width:27px;height:27px;}
+.around-card h4{font-family:var(--font-serif);font-size:18px;font-weight:700;margin-bottom:10px;}
+.around-card ul li{
+  display:flex;justify-content:space-between;gap:16px;
+  font-size:14px;color:var(--ink-2);padding:5px 0;
+}
+.around-card ul li span.dist{color:var(--amber-deep);font-weight:600;white-space:nowrap;}
+.around-card .a-note{font-size:12.5px;color:var(--muted);margin-top:8px;}
+
+/* ===== 社区活动 ===== */
+.events-wrap{
+  display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center;
+  background:var(--white);border:1px solid var(--line);border-radius:22px;overflow:hidden;
+}
+.events-media img{width:100%;height:100%;object-fit:cover;}
+.events-body{padding:40px 44px 40px 8px;}
+.event-item{
+  display:flex;gap:18px;padding:18px 0;border-bottom:1px dashed var(--line);
+}
+.event-item:last-child{border-bottom:none;}
+.event-date{
+  flex:none;width:66px;height:76px;border-radius:14px;background:var(--leaf);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--pine);
+}
+.event-date b{font-family:var(--font-serif);font-size:24px;line-height:1.1;}
+.event-date span{font-size:11px;letter-spacing:.1em;margin-top:3px;}
+.event-info h5{font-size:15.5px;font-weight:600;line-height:1.5;}
+.event-info p{font-size:13px;color:var(--muted);margin-top:5px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.event-info p svg{width:14px;height:14px;color:var(--amber-deep);}
+.event-tag{
+  display:inline-block;font-size:11.5px;font-weight:600;color:var(--amber-deep);
+  background:var(--amber-soft);padding:2px 10px;border-radius:999px;margin-left:6px;
+}
+
+/* ===== 便民信息 ===== */
+.life-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:26px;align-items:start;}
+.life-card{
+  background:var(--white);border:1px solid var(--line);border-radius:18px;padding:28px;
+}
+.life-card h4{font-family:var(--font-serif);font-size:19px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.life-card h4 svg{width:20px;height:20px;color:var(--pine);}
+.phone-table{width:100%;border-collapse:collapse;}
+.phone-table th,.phone-table td{padding:11px 8px;text-align:left;font-size:14px;border-bottom:1px solid var(--line);}
+.phone-table th{font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:500;}
+.phone-table td:last-child{text-align:right;font-weight:600;color:var(--pine);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.phone-table tr:last-child td{border-bottom:none;}
+.trash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:24px;}
+.trash-item{border-radius:14px;padding:16px 18px;color:var(--white);}
+.trash-item h5{font-size:15px;font-weight:700;margin-bottom:4px;}
+.trash-item p{font-size:12.5px;line-height:1.65;opacity:.95;}
+.trash-item .t-ic{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.trash-item .t-ic svg{width:18px;height:18px;}
+.t-blue{background:#3B7DD8;}
+.t-red{background:#D9534F;}
+.t-green{background:#4C9A5F;}
+.t-gray{background:#7A8580;}
+.rules-list{margin-top:6px;}
+.rules-list li{
+  display:flex;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line);
+  font-size:14px;color:var(--ink-2);
+}
+.rules-list li:last-child{border-bottom:none;}
+.rules-list svg{flex:none;width:18px;height:18px;color:var(--pine);margin-top:3px;}
+.rules-list b{color:var(--pine);font-weight:600;}
+
+/* ===== 联系我们 ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+.contact-card{
+  background:var(--white);border:1px solid var(--line);border-radius:18px;
+  padding:28px;display:flex;gap:18px;align-items:flex-start;
+}
+.contact-card .c-ic{
+  flex:none;width:52px;height:52px;border-radius:14px;background:var(--leaf);
+  color:var(--pine);display:flex;align-items:center;justify-content:center;
+}
+.contact-card .c-ic svg{width:25px;height:25px;}
+.contact-card h4{font-size:15.5px;font-weight:600;margin-bottom:5px;}
+.contact-card p{font-size:13.5px;color:var(--muted);line-height:1.75;}
+.contact-card p b{color:var(--ink);font-weight:600;}
+.contact-card .c-note{margin-top:10px;font-size:12.5px;color:var(--amber-deep);}
+.contact-banner{
+  margin-top:28px;border-radius:20px;overflow:hidden;position:relative;min-height:220px;
+  display:flex;align-items:flex-end;
+}
+.contact-banner .cb-img{position:absolute;inset:0;background-size:cover;background-position:center;}
+.contact-banner .cb-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,38,29,.15),rgba(14,32,25,.72));}
+.contact-banner .cb-text{position:relative;z-index:2;color:var(--white);padding:30px 34px;}
+.contact-banner h4{font-family:var(--font-serif);font-size:22px;font-weight:700;margin-bottom:6px;}
+.contact-banner p{font-size:14px;opacity:.92;}
+
+/* ===== 页脚 ===== */
+.site-footer{background:#16291F;color:rgba(255,255,255,.82);padding:64px 0 0;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:46px;}
+.footer-brand .brand-name{color:var(--white);}
+.footer-brand p{font-size:13.5px;line-height:1.9;margin-top:16px;opacity:.75;max-width:300px;}
+.footer-col h5{
+  font-size:14px;font-weight:600;color:var(--white);letter-spacing:.08em;
+  margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.14);
+}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul a{font-size:13.5px;opacity:.8;transition:opacity .2s,padding-left .2s;}
+.footer-col ul a:hover{opacity:1;padding-left:5px;color:#FFD9A0;}
+.footer-col p{font-size:13.5px;opacity:.8;line-height:1.9;margin-bottom:6px;display:flex;gap:8px;align-items:flex-start;}
+.footer-col p svg{flex:none;width:16px;height:16px;margin-top:4px;}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.12);
+  padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:12.5px;opacity:.65;
+}
+.footer-bottom a:hover{color:#FFD9A0;}
+
+/* ===== 回到顶部 ===== */
+.back-top{
+  position:fixed;right:26px;bottom:30px;z-index:90;
+  width:48px;height:48px;border-radius:50%;
+  background:var(--pine);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);opacity:0;pointer-events:none;
+  transform:translateY(12px);transition:opacity .3s,transform .3s,background .2s;
+}
+.back-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+.back-top:hover{background:var(--pine-deep);}
+.back-top svg{width:22px;height:22px;}
+
+/* ===== 响应式 ===== */
+@media (max-width:1024px){
+  .service-grid{grid-template-columns:repeat(3,1fr);}
+  .facility-grid{grid-template-columns:repeat(2,1fr);}
+  .around-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;gap:44px;}
+  .events-wrap{grid-template-columns:1fr;}
+  .events-body{padding:32px 34px 40px;}
+  .events-media img{max-height:340px;}
+  .life-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+}
+@media (max-width:768px){
+  .section{padding:64px 0;}
+  .sec-title{font-size:27px;}
+  .nav-links{
+    position:fixed;top:72px;left:0;right:0;
+    background:var(--white);flex-direction:column;align-items:stretch;
+    padding:14px 20px 22px;gap:4px;
+    box-shadow:0 18px 34px rgba(30,58,47,.14);
+    border-bottom:1px solid var(--line);
+    transform:translateY(-130%);transition:transform .3s ease;
+  }
+  .nav-links.open{transform:translateY(0);}
+  .nav-links a{padding:13px 16px;font-size:16px;border-radius:12px;}
+  .nav-cta{margin-left:0;text-align:center;}
+  .nav-toggle{display:flex;}
+  .hero{padding-top:110px;min-height:88vh;}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:14px 0;}
+  .hstat:nth-child(3){border-left:none;}
+  .hstat:nth-child(n+3){border-top:1px solid rgba(255,255,255,.2);padding-top:14px;}
+  .today-card{grid-template-columns:1fr;gap:16px;padding:20px;}
+  .today-date{border-right:none;border-bottom:1px solid var(--line);padding-right:0;padding-bottom:16px;}
+  .today-msg .t-text{white-space:normal;}
+  .today-hotline{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:16px;}
+  .about-points{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .news-grid{grid-template-columns:1fr;}
+  .service-grid{grid-template-columns:repeat(2,1fr);}
+  .process-wrap{padding:28px 22px;}
+  .process-steps{grid-template-columns:1fr 1fr;gap:26px;}
+  .process-steps::before{display:none;}
+  .facility-grid{grid-template-columns:1fr;}
+  .facility-mini{grid-template-columns:repeat(2,1fr);}
+  .trash-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;gap:28px;}
+  .hero-actions .btn{width:100%;}
+  .about-media .float-card{left:12px;bottom:-16px;padding:12px 16px;}
+}
+@media (max-width:420px){
+  .service-grid{grid-template-columns:1fr 1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  .stat-card{padding:20px 12px;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{transition:none!important;animation:none!important;}
+}
+</style>
 </head>
 <body>
-<h1>米亚花园（北区）</h1>
-<p>网站正在建设中，敬请期待。</p>
+
+<!-- ===== 顶部导航 ===== -->
+<header class="site-header" id="siteHeader">
+  <div class="container nav">
+    <a href="#home" class="brand" aria-label="阳光里小区首页">
+      <span class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/></svg>
+      </span>
+      <span>
+        <span class="brand-name">阳光里小区</span>
+        <span class="brand-sub">YANGGUANGLI</span>
+      </span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="主导航">
+      <a href="#home" class="active">首页</a>
+      <a href="#about">小区介绍</a>
+      <a href="#news">最新公告</a>
+      <a href="#service">物业服务</a>
+      <a href="#facilities">小区设施</a>
+      <a href="#around">周边配套</a>
+      <a href="#life">便民信息</a>
+      <a href="#contact" class="nav-cta">联系我们</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+<!-- ===== Hero 首屏 ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg" style="background-image:url('https://aka.doubaocdn.com/s/BVfQkQZsad');"></div>
+  <div class="container hero-inner">
+    <span class="hero-tag">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      安徽省蚌埠市 · 龙子湖区
+    </span>
+    <h1 class="hero-title">在城市里，安一个<br><span class="hl">绿意融融</span>的家</h1>
+    <p class="hero-sub">阳光里小区 —— 低密度花园住区，12 栋住宅错落于 42% 绿化之中。我们关心你居住的每一个日常，让物业服务触手可及。</p>
+    <div class="hero-actions">
+      <a href="#news" class="btn btn--amber">查看最新公告</a>
+      <a href="#contact" class="btn btn--ghost">联系物业服务</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">42%</div><div class="hstat-label">绿化率</div></div>
+      <div class="hstat"><div class="hstat-num">12</div><div class="hstat-label">栋住宅楼</div></div>
+      <div class="hstat"><div class="hstat-num">1860</div><div class="hstat-label">户常住家庭</div></div>
+      <div class="hstat"><div class="hstat-num">24h</div><div class="hstat-label">安保值守</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 今日社区信息栏 ===== -->
+<div class="today-bar">
+  <div class="container">
+    <div class="today-card">
+      <div class="today-date">
+        <div class="d-num"><b id="todayDay">--</b><span id="todayMonth">----</span></div>
+        <div class="d-info">
+          <div class="d-week" id="todayWeek">星期 --</div>
+          <div class="d-text">今日社区 · 服务在线</div>
+        </div>
+      </div>
+      <div class="today-msg">
+        <span class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <div>
+          <div class="t-title">温馨提示</div>
+          <div class="t-text" id="todayTip">本周六（9 月 26 日）15:00 中秋游园会在中心广场举行，欢迎业主携家人参加。</div>
+        </div>
+      </div>
+      <div class="today-hotline">
+        <span class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        </span>
+        <div>
+          <div class="h-label">24 小时服务热线</div>
+          <div class="h-num">0552-XXXXXXX</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 关于小区 ===== -->
+<section class="section section--white" id="about" style="background:var(--white);">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">About Us</span>
+      <h2 class="sec-title">关于阳光里小区</h2>
+      <p class="sec-sub">一座把生活放进花园里的社区。以下为示例概况，正式数据请以物业发布为准。</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-media">
+        <img class="main-img" src="https://aka.doubaocdn.com/s/IFI8h5cfju" alt="小区中央花园林荫步道">
+        <div class="float-card">
+          <span class="f-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/></svg>
+          </span>
+          <div>
+            <div class="f-num">2018 年</div>
+            <div class="f-label">一期交付入住</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-body">
+        <p>阳光里小区位于蚌埠市龙子湖区，总建筑面积约 18.5 万平方米。小区以「花园式住区」为设计理念，楼间距开阔，绿化覆盖率 42%，中心景观带串联起林荫步道、景观水景与儿童乐园。</p>
+        <p>小区实行人车分流，地下车库直达各楼栋电梯厅；全天候安保巡逻与智能门禁系统双保险，为业主提供安全、安静的居住环境。</p>
+        <div class="about-points">
+          <div class="apoint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>人车分流 · 地下停车</div>
+          <div class="apoint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>智能门禁 · 刷脸通行</div>
+          <div class="apoint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>24 小时安保巡逻</div>
+          <div class="apoint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>电梯直达地下车库</div>
+        </div>
+        <a href="#contact" class="btn btn--outline">了解更多</a>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div><span class="s-num">6.8</span><span class="s-unit">万㎡</span></div>
+        <div class="s-label">占地面积</div>
+      </div>
+      <div class="stat-card">
+        <div><span class="s-num">18.5</span><span class="s-unit">万㎡</span></div>
+        <div class="s-label">建筑面积</div>
+      </div>
+      <div class="stat-card">
+        <div><span class="s-num">1920</span><span class="s-unit">个</span></div>
+        <div class="s-label">地下车位数</div>
+      </div>
+      <div class="stat-card">
+        <div><span class="s-num">1.8</span><span class="s-unit">元/㎡·月</span></div>
+        <div class="s-label">物业费标准</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 最新公告 ===== -->
+<section class="section section--leaf" id="news">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Community News</span>
+      <h2 class="sec-title">最新公告</h2>
+      <p class="sec-sub">社区通知、物业安排与活动消息，都会第一时间在这里发布。以下为示例公告。</p>
+    </div>
+    <div class="news-grid">
+      <article class="news-card">
+        <div class="news-top">
+          <span class="news-badge">社区活动</span>
+          <span class="news-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>2026-09-12</span>
+        </div>
+        <h3 class="news-title">中秋游园会活动招募志愿者与摊位</h3>
+        <p class="news-desc">为迎接中秋佳节，小区将于 9 月 26 日（周六）15:00-20:00 在中心广场举办中秋游园会，现场设置灯谜竞猜、亲子手作、美食摊位等环节。现面向全体业主招募志愿者 12 名，并开放 8 个业主摊位名额，欢迎报名参与。</p>
+        <button class="news-more" aria-expanded="false">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="news-full">报名方式：前往物业服务中心登记，或拨打服务热线报名，报名截止时间为 9 月 20 日 18:00。志愿者需在活动当日 14:00 前到场协助布置。摊位报名请携带业主卡核验身份，每个家庭限报一个摊位。</div>
+      </article>
+      <article class="news-card">
+        <div class="news-top">
+          <span class="news-badge">维保通知</span>
+          <span class="news-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>2026-09-10</span>
+        </div>
+        <h3 class="news-title">9 月 16 日-17 日电梯例行保养安排</h3>
+        <p class="news-desc">根据电梯维保计划，9 月 16 日至 17 日将对 1-6 栋共 12 部电梯进行例行保养。保养期间相关电梯将分批停运，每部电梯停运约 2 小时，请业主合理安排出行时间，由此带来的不便敬请谅解。</p>
+        <button class="news-more" aria-expanded="false">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="news-full">具体停运时段：9 月 16 日 1-3 栋电梯 9:00-11:00、14:00-16:00；9 月 17 日 4-6 栋电梯同上时段。保养期间如遇紧急情况，请使用楼梯或联系物业值班室协调其他电梯，感谢您的配合。</div>
+      </article>
+      <article class="news-card">
+        <div class="news-top">
+          <span class="news-badge">环境服务</span>
+          <span class="news-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>2026-09-08</span>
+        </div>
+        <h3 class="news-title">小区秋季绿化消杀作业温馨提示</h3>
+        <p class="news-desc">为做好秋季病虫害防治，物业将于 9 月 15 日、22 日上午 8:30-11:30 对园区绿植进行消杀作业。作业期间请关闭门窗、看管好宠物，请勿触摸绿化带植物，喷洒区域请勿停留。</p>
+        <button class="news-more" aria-expanded="false">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="news-full">如遇雨天，消杀作业将顺延至次日上午同时段。消杀药剂为低毒环保型，对人体和宠物基本无害，但请家长提醒孩子不要采摘绿化带内的果实和叶片。各楼栋公告栏同步张贴纸质通知。</div>
+      </article>
+      <article class="news-card">
+        <div class="news-top">
+          <span class="news-badge">系统升级</span>
+          <span class="news-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>2026-09-05</span>
+        </div>
+        <h3 class="news-title">地下车库车牌识别系统升级公告</h3>
+        <p class="news-desc">为提升车辆通行效率，物业将于 9 月 20 日 23:00-次日 2:00 对地下车库出入口车牌识别系统进行升级。升级期间车辆可凭业主卡或登记信息由人工通道进出，请业主提前做好安排。</p>
+        <button class="news-more" aria-expanded="false">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="news-full">升级完成后，临停车位预约功能将同步上线，业主可通过物业小程序提前预约访客车位。升级期间东、西两个入口将各保留一条人工通道，请听从现场秩序员引导，减速慢行。</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 物业服务 ===== -->
+<section class="section section--white" id="service" style="background:var(--white);">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Property Service</span>
+      <h2 class="sec-title">物业服务</h2>
+      <p class="sec-sub">一个电话，服务到家。物业服务中心全年无休，报修响应 30 分钟内上门。</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-item">
+        <span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h4>安保秩序</h4>
+        <p>24 小时门岗值守、园区巡逻、访客登记</p>
+      </div>
+      <div class="service-item">
+        <span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg></span>
+        <h4>环境保洁</h4>
+        <p>每日两次楼道保洁、园区垃圾清运、四害消杀</p>
+      </div>
+      <div class="service-item">
+        <span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M6 8h4M8 6v4M15 8h.01M18 12h.01"/></svg></span>
+        <h4>绿化养护</h4>
+        <p>四季修剪、病虫害防治、节日花镜布置</p>
+      </div>
+      <div class="service-item">
+        <span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18v3h3l5.7-5.7a4.5 4.5 0 0 0 6-6L14.5 12 12 9.5z"/></svg></span>
+        <h4>维修服务</h4>
+        <p>水电急修 30 分钟响应、公共设施维护</p>
+      </div>
+      <div class="service-item">
+        <span class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3l2-6 4 14 3-8h6"/></svg></span>
+        <h4>客户服务</h4>
+        <p>投诉建议 48 小时闭环、代收快递、便民工具出借</p>
+      </div>
+    </div>
+
+    <div class="process-wrap">
+      <div class="process-title">
+        <span class="p-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18v3h3l5.7-5.7a4.5 4.5 0 0 0 6-6L14.5 12 12 9.5z"/></svg></span>
+        报修服务流程
+      </div>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h5>电话 / 前台报修</h5>
+          <p>拨打服务热线或到物业前台登记，说明故障位置与情况</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h5>工单派发</h5>
+          <p>客服 5 分钟内创建工单并派给对应专业维修班组</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h5>上门维修</h5>
+          <p>急修 30 分钟内上门，一般维修预约时段内上门</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h5>回访确认</h5>
+          <p>维修完成后 24 小时内电话回访，确认服务满意</p>
+        </div>
+      </div>
+      <div class="svc-info">
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>服务中心办公时间：<b>每日 8:30 - 20:00</b></span>
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg>夜间及节假日值班：<b>0552-XXXXXXX</b></span>
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>服务中心位置：<b>12 栋 1 楼（示例地址）</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 小区设施 ===== -->
+<section class="section section--leaf" id="facilities">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Facilities</span>
+      <h2 class="sec-title">小区设施</h2>
+      <p class="sec-sub">从孩子的游乐场到你的健身房，园区里的每一处配套都为日常而设。</p>
+    </div>
+    <div class="facility-grid">
+      <div class="facility-card">
+        <img class="f-img" src="https://aka.doubaocdn.com/s/sNa5dL7FZc" alt="社区儿童乐园">
+        <div class="f-body">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="14" r="2"/><circle cx="18" cy="14" r="2"/><path d="M4 14v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3M6 14V9a6 6 0 0 1 12 0v5"/></svg>儿童乐园</h4>
+          <p>安全地垫全覆盖的滑梯、秋千与摇摇马，位于 5 栋与 6 栋之间，每日 8:00-20:00 开放。</p>
+        </div>
+      </div>
+      <div class="facility-card">
+        <img class="f-img" src="https://aka.doubaocdn.com/s/nkJ0hYjbml" alt="社区健身区与羽毛球场">
+        <div class="f-body">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5 17.5 17.5M3 9l2 2M21 13l2 2M9 3l2 2M13 21l2 2M6.5 17.5 17.5 6.5"/></svg>健身区 · 羽毛球场</h4>
+          <p>户外健身器材 12 组，另设塑胶羽毛球场 1 片，晚间配有照明，场地免费使用。</p>
+        </div>
+      </div>
+      <div class="facility-card">
+        <div class="f-body" style="padding-top:26px;">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6c0 4 6 9 6 9s6-5 6-9a6 6 0 0 0-6-6z"/><circle cx="12" cy="9" r="2.5"/></svg>中心景观水景</h4>
+          <p>园区中央的人工水景与亲水平台，夏夜与家人散步纳凉的好去处。</p>
+        </div>
+      </div>
+    </div>
+    <div class="facility-mini">
+      <div class="fmini">
+        <span class="fm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 12 4l7 7M7 9v11h10V9"/><path d="M10 20v-5h4v5"/></svg></span>
+        <h5>地下车库</h5>
+        <p>1920 个车位 · 人车分流</p>
+      </div>
+      <div class="fmini">
+        <span class="fm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg></span>
+        <h5>快递驿站</h5>
+        <p>3 栋一楼 · 营业至 21:00</p>
+      </div>
+      <div class="fmini">
+        <span class="fm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
+        <h5>充电桩</h5>
+        <p>地下车库 B2 · 快慢充兼备</p>
+      </div>
+      <div class="fmini">
+        <span class="fm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <h5>活动中心</h5>
+        <p>9 栋 2 楼 · 棋牌 / 阅览 / 亲子</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 周边配套 ===== -->
+<section class="section section--white" id="around" style="background:var(--white);">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Surroundings</span>
+      <h2 class="sec-title">周边配套</h2>
+      <p class="sec-sub">教育、医疗、商业、出行，15 分钟生活圈一应俱全。以下距离为示例参考。</p>
+    </div>
+    <div class="around-grid">
+      <div class="around-card">
+        <span class="a-ic" style="background:#3B7DD8;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 10v6"/></svg>
+        </span>
+        <div style="flex:1;">
+          <h4>教育配套</h4>
+          <ul>
+            <li><span>阳光里幼儿园</span><span class="dist">步行 5 分钟</span></li>
+            <li><span>蚌埠第二实验小学（示例）</span><span class="dist">步行 10 分钟</span></li>
+            <li><span>龙湖中学（示例）</span><span class="dist">驾车 8 分钟</span></li>
+          </ul>
+          <p class="a-note">学区划分请以教育主管部门当年公布为准。</p>
+        </div>
+      </div>
+      <div class="around-card">
+        <span class="a-ic" style="background:#D9534F;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.4 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3.4 1-4.5 2.5A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.1 3 5.5l7 7z"/></svg>
+        </span>
+        <div style="flex:1;">
+          <h4>医疗配套</h4>
+          <ul>
+            <li><span>社区卫生服务站</span><span class="dist">小区东门旁</span></li>
+            <li><span>蚌埠市第二人民医院（示例）</span><span class="dist">驾车 10 分钟</span></li>
+            <li><span>仁济大药房（示例）</span><span class="dist">步行 6 分钟</span></li>
+          </ul>
+          <p class="a-note">夜间急诊请直接拨打 120，值班电话见便民信息。</p>
+        </div>
+      </div>
+      <div class="around-card">
+        <span class="a-ic" style="background:#D98E2B;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v13H3z"/><path d="M3 7 12 3l9 4"/><path d="M7 11v6M12 11v6M17 11v6"/></svg>
+        </span>
+        <div style="flex:1;">
+          <h4>商业配套</h4>
+          <ul>
+            <li><span>社区生活超市</span><span class="dist">步行 4 分钟</span></li>
+            <li><span>万达广场（示例）</span><span class="dist">驾车 8 分钟</span></li>
+            <li><span>菜市场</span><span class="dist">步行 12 分钟</span></li>
+          </ul>
+          <p class="a-note">周边早餐店、便利店 10 余家，生活采购便利。</p>
+        </div>
+      </div>
+      <div class="around-card">
+        <span class="a-ic" style="background:#4C9A5F;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16M17 15.5h.01M17 18.5h.01"/></svg>
+        </span>
+        <div style="flex:1;">
+          <h4>交通出行</h4>
+          <ul>
+            <li><span>公交 105 / 128 路（示例）</span><span class="dist">小区南门</span></li>
+            <li><span>蚌埠南站</span><span class="dist">驾车 15 分钟</span></li>
+            <li><span>共享单车停放点</span><span class="dist">东门 / 南门</span></li>
+          </ul>
+          <p class="a-note">南门公交站台步行 2 分钟即达，早晚高峰班次密集。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 社区活动 ===== -->
+<section class="section section--sand" id="events">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Community Events</span>
+      <h2 class="sec-title">社区活动</h2>
+      <p class="sec-sub">把邻居变成朋友，让社区更有温度。近期活动安排如下。</p>
+    </div>
+    <div class="events-wrap">
+      <div class="events-media">
+        <img src="https://aka.doubaocdn.com/s/gjMv29VKK1" alt="社区活动现场">
+      </div>
+      <div class="events-body">
+        <div class="event-item">
+          <div class="event-date"><b>26</b><span>9 月</span></div>
+          <div class="event-info">
+            <h5>中秋游园会<span class="event-tag">火热报名中</span></h5>
+            <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>周六 15:00-20:00 · 中心广场</p>
+            <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>灯谜竞猜 · 亲子手作 · 美食摊位</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date"><b>每周三</b><span>上午</span></div>
+          <div class="event-info">
+            <h5>银龄合唱班</h5>
+            <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>周三 9:30-11:00 · 活动中心</p>
+            <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>欢迎 60 岁以上业主免费参加</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date"><b>每周六</b><span>上午</span></div>
+          <div class="event-info">
+            <h5>亲子绘本角</h5>
+            <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>周六 10:00-11:30 · 儿童活动室</p>
+            <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>3-6 岁儿童 · 家长陪同</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date"><b>10</b><span>10 月</span></div>
+          <div class="event-info">
+            <h5>重阳节健康义诊</h5>
+            <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10 月 10 日（周六）9:00-12:00 · 社区服务站</p>
+            <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.4 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3.4 1-4.5 2.5A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.1 3 5.5l7 7z"/></svg>免费量血压、健康咨询（示例安排）</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 便民信息 ===== -->
+<section class="section section--white" id="life" style="background:var(--white);">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Daily Life</span>
+      <h2 class="sec-title">便民信息</h2>
+      <p class="sec-sub">常用电话、垃圾分类、装修须知，一次查全。电话号码为示例占位，请替换为实际号码。</p>
+    </div>
+    <div class="life-grid">
+      <div class="life-card">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg>常用服务电话</h4>
+        <table class="phone-table">
+          <thead><tr><th>服务项目</th><th>联系方式</th></tr></thead>
+          <tbody>
+            <tr><td>物业服务中心（24 小时）</td><td>0552-XXXXXXX</td></tr>
+            <tr><td>电梯应急 / 夜间值班</td><td>0552-XXXXXXX</td></tr>
+            <tr><td>国家电网服务热线</td><td>95598</td></tr>
+            <tr><td>自来水公司（示例）</td><td>0552-XXXXXXX</td></tr>
+            <tr><td>燃气公司（示例）</td><td>0552-XXXXXXX</td></tr>
+            <tr><td>有线电视 / 宽带（示例）</td><td>0552-XXXXXXX</td></tr>
+            <tr><td>火警 / 急救 / 报警</td><td>119 / 120 / 110</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="life-card" style="margin-bottom:26px;">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>垃圾分类指南</h4>
+          <div class="trash-grid">
+            <div class="trash-item t-blue">
+              <span class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg></span>
+              <h5>可回收物</h5>
+              <p>纸张、塑料瓶、金属、玻璃、织物（投放至蓝桶）</p>
+            </div>
+            <div class="trash-item t-red">
+              <span class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span>
+              <h5>有害垃圾</h5>
+              <p>电池、灯管、过期药品、油漆桶（投放至红桶）</p>
+            </div>
+            <div class="trash-item t-green">
+              <span class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 7H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+              <h5>厨余垃圾</h5>
+              <p>剩菜剩饭、果皮菜叶、茶渣（投放至绿桶）</p>
+            </div>
+            <div class="trash-item t-gray">
+              <span class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <h5>其他垃圾</h5>
+              <p>烟蒂、纸巾、陶瓷碎片、一次性餐具（投放至灰桶）</p>
+            </div>
+          </div>
+        </div>
+        <div class="life-card">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18v3h3l5.7-5.7a4.5 4.5 0 0 0 6-6L14.5 12 12 9.5z"/></svg>装修施工须知</h4>
+          <ul class="rules-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>允许施工时间</b>：工作日 8:00-12:00、14:00-18:00</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M10 9l4 4M14 9l-4 4"/></svg><span><b>节假日与周末</b>：禁止产生噪音的施工作业</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><span><b>装修备案</b>：开工前到物业服务中心办理装修备案</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>垃圾清运</b>：装修垃圾袋装化，堆放至指定清运点</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 联系我们 ===== -->
+<section class="section section--leaf" id="contact">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Contact</span>
+      <h2 class="sec-title">联系我们</h2>
+      <p class="sec-sub">有任何问题，欢迎随时联系物业服务中心。以下地址与电话为示例占位。</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+        <div>
+          <h4>物业服务中心</h4>
+          <p>蚌埠市龙子湖区阳光里小区 12 栋 1 楼（示例地址）</p>
+          <p class="c-note">服务中心办公时间：每日 8:30 - 20:00</p>
+        </div>
+      </div>
+      <div class="contact-card">
+        <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+        <div>
+          <h4>服务热线</h4>
+          <p><b>0552-XXXXXXX</b>（24 小时）<br>投诉建议专线：0552-XXXXXXX</p>
+          <p class="c-note">报修、咨询、投诉建议均可拨打</p>
+        </div>
+      </div>
+      <div class="contact-card">
+        <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+        <div>
+          <h4>电子邮箱</h4>
+          <p>service@yangguangli.example.com（示例邮箱）</p>
+          <p class="c-note">书面意见与建议可发送至上述邮箱</p>
+        </div>
+      </div>
+      <div class="contact-card">
+        <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18v3h3l5.7-5.7a4.5 4.5 0 0 0 6-6L14.5 12 12 9.5z"/></svg></span>
+        <div>
+          <h4>业委会联络</h4>
+          <p>业主委员会办公室：9 栋 2 楼（示例）</p>
+          <p class="c-note">每月最后一个周六 9:30-11:30 业主接待日</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-banner">
+      <div class="cb-img" style="background-image:url('https://aka.doubaocdn.com/s/TCpsnSRdiR');"></div>
+      <div class="cb-text">
+        <h4>夜幕下的阳光里</h4>
+        <p>无论多晚回家，总有一盏灯为你亮着。欢迎来到阳光里小区。</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="brand" style="color:var(--white);">
+          <span class="brand-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/></svg>
+          </span>
+          <span>
+            <span class="brand-name">阳光里小区</span>
+            <span class="brand-sub" style="color:rgba(255,255,255,.5);">YANGGUANGLI COMMUNITY</span>
+          </span>
+        </a>
+        <p>让居住更有温度，让社区更有归属。阳光里小区物业服务中心与全体业主共建美好家园。</p>
+      </div>
+      <div class="footer-col">
+        <h5>快速导航</h5>
+        <ul>
+          <li><a href="#about">小区介绍</a></li>
+          <li><a href="#news">最新公告</a></li>
+          <li><a href="#service">物业服务</a></li>
+          <li><a href="#events">社区活动</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>便民服务</h5>
+        <ul>
+          <li><a href="#facilities">小区设施</a></li>
+          <li><a href="#around">周边配套</a></li>
+          <li><a href="#life">常用电话</a></li>
+          <li><a href="#life">垃圾分类</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>联系方式</h5>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>蚌埠市龙子湖区阳光里小区（示例地址）</p>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg>服务热线：0552-XXXXXXX（24 小时）</p>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>service@yangguangli.example.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 阳光里小区物业服务中心 · 本站为社区展示网站</span>
+      <span><a href="#home">返回顶部</a> · 皖ICP备XXXXXXXX号（示例）</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== 回到顶部 ===== -->
+<button class="back-top" id="backTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- 移动端菜单 ---- */
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded','false');
+    }
+  });
+
+  /* ---- 顶部导航滚动状态 ---- */
+  var header = document.getElementById('siteHeader');
+  var backTop = document.getElementById('backTop');
+  function onScroll(){
+    header.classList.toggle('scrolled', window.scrollY > 8);
+    backTop.classList.toggle('show', window.scrollY > 480);
+    updateActiveNav();
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---- 导航高亮 ---- */
+  var sections = [];
+  var links = navLinks.querySelectorAll('a[href^="#"]');
+  links.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if(el){ sections.push({id:id, el:el, link:a}); }
+  });
+  function updateActiveNav(){
+    var pos = window.scrollY + 120;
+    var current = sections[0] ? sections[0].id : '';
+    sections.forEach(function(s){
+      if(s.el.offsetTop <= pos){ current = s.id; }
+    });
+    links.forEach(function(a){
+      var act = a.getAttribute('href').slice(1) === current;
+      a.classList.toggle('active', act);
+    });
+  }
+
+  /* ---- 今日社区：实时日期 ---- */
+  var dayEl = document.getElementById('todayDay');
+  var monthEl = document.getElementById('todayMonth');
+  var weekEl = document.getElementById('todayWeek');
+  var weeks = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+  var now = new Date();
+  dayEl.textContent = String(now.getDate()).padStart(2,'0');
+  monthEl.textContent = (now.getMonth()+1) + '月';
+  weekEl.textContent = weeks[now.getDay()];
+
+  /* ---- 公告展开/收起 ---- */
+  document.querySelectorAll('.news-card').forEach(function(card){
+    var btn = card.querySelector('.news-more');
+    btn.addEventListener('click', function(){
+      var open = card.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.firstChild.textContent = open ? '收起详情 ' : '查看详情 ';
+    });
+  });
+
+  /* ---- 回到顶部 ---- */
+  backTop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+})();
+</script>
 </body>
 </html>
