@@ -1664,14 +1664,15 @@ section[id]{scroll-margin-top:120px;}
       .then(function(r){ if(!r.ok) throw new Error('list-failed'); return r.json(); })
       .then(function(files){
         var mds = (Array.isArray(files) ? files : []).filter(function(f){ return /\.md$/i.test(f.name); });
-        mds.sort(function(a,b){ return a.name < b.name ? 1 : -1; });
         return Promise.all(mds.map(function(f){
           return fetch('https://raw.githubusercontent.com/beimiya/beimiya.github.io/main/content/posts/' + encodeURIComponent(f.name))
             .then(function(r){ if(!r.ok) throw new Error('file-failed'); return r.text(); });
         }));
       })
       .then(function(texts){
-        render(texts.map(parseMd).filter(Boolean));
+        var items = texts.map(parseMd).filter(Boolean);
+        items.sort(function(a,b){ return (a.date < b.date) ? 1 : (a.date > b.date) ? -1 : 0; });
+        render(items);
       })
       .catch(function(){
         grid.innerHTML = '<p class="news-empty">公告加载失败，请稍后刷新查看。</p>';
