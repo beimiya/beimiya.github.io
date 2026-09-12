@@ -263,6 +263,7 @@ section[id]{scroll-margin-top:120px;}
 
 /* ===== 公告 ===== */
 .news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+.news-empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px 0;font-size:14px;}
 .news-card{
   position:relative;background:var(--white);border:1px solid var(--line);
   border-radius:18px;padding:26px 26px 22px;overflow:hidden;
@@ -785,49 +786,10 @@ section[id]{scroll-margin-top:120px;}
     <div class="sec-head">
       <span class="sec-eyebrow">Community News</span>
       <h2 class="sec-title">最新公告</h2>
-      <p class="sec-sub">社区通知、物业安排与活动消息，都会第一时间在这里发布。以下为示例公告。</p>
+      <p class="sec-sub">社区通知、物业安排与活动消息，都会第一时间在这里发布。</p>
     </div>
-    <div class="news-grid">
-      <article class="news-card">
-        <div class="news-top">
-          <span class="news-badge">社区活动</span>
-          <span class="news-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>2026-09-12</span>
-        </div>
-        <h3 class="news-title">中秋游园会活动招募志愿者与摊位</h3>
-        <p class="news-desc">为迎接中秋佳节，小区将于 9 月 26 日（周六）15:00-20:00 在中心广场举办中秋游园会，现场设置灯谜竞猜、亲子手作、美食摊位等环节。现面向全体业主招募志愿者 12 名，并开放 8 个业主摊位名额，欢迎报名参与。</p>
-        <button class="news-more" aria-expanded="false">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="news-full">报名方式：前往物业服务中心登记，或拨打服务热线报名，报名截止时间为 9 月 20 日 18:00。志愿者需在活动当日 14:00 前到场协助布置。摊位报名请携带业主卡核验身份，每个家庭限报一个摊位。</div>
-      </article>
-      <article class="news-card">
-        <div class="news-top">
-          <span class="news-badge">维保通知</span>
-          <span class="news-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>2026-09-10</span>
-        </div>
-        <h3 class="news-title">9 月 16 日-17 日电梯例行保养安排</h3>
-        <p class="news-desc">根据电梯维保计划，9 月 16 日至 17 日将对 1-6 栋共 12 部电梯进行例行保养。保养期间相关电梯将分批停运，每部电梯停运约 2 小时，请业主合理安排出行时间，由此带来的不便敬请谅解。</p>
-        <button class="news-more" aria-expanded="false">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="news-full">具体停运时段：9 月 16 日 1-3 栋电梯 9:00-11:00、14:00-16:00；9 月 17 日 4-6 栋电梯同上时段。保养期间如遇紧急情况，请使用楼梯或联系物业值班室协调其他电梯，感谢您的配合。</div>
-      </article>
-      <article class="news-card">
-        <div class="news-top">
-          <span class="news-badge">环境服务</span>
-          <span class="news-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>2026-09-08</span>
-        </div>
-        <h3 class="news-title">小区秋季绿化消杀作业温馨提示</h3>
-        <p class="news-desc">为做好秋季病虫害防治，物业将于 9 月 15 日、22 日上午 8:30-11:30 对园区绿植进行消杀作业。作业期间请关闭门窗、看管好宠物，请勿触摸绿化带植物，喷洒区域请勿停留。</p>
-        <button class="news-more" aria-expanded="false">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="news-full">如遇雨天，消杀作业将顺延至次日上午同时段。消杀药剂为低毒环保型，对人体和宠物基本无害，但请家长提醒孩子不要采摘绿化带内的果实和叶片。各楼栋公告栏同步张贴纸质通知。</div>
-      </article>
-      <article class="news-card">
-        <div class="news-top">
-          <span class="news-badge">系统升级</span>
-          <span class="news-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>2026-09-05</span>
-        </div>
-        <h3 class="news-title">地下车库车牌识别系统升级公告</h3>
-        <p class="news-desc">为提升车辆通行效率，物业将于 9 月 20 日 23:00-次日 2:00 对地下车库出入口车牌识别系统进行升级。升级期间车辆可凭业主卡或登记信息由人工通道进出，请业主提前做好安排。</p>
-        <button class="news-more" aria-expanded="false">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="news-full">升级完成后，临停车位预约功能将同步上线，业主可通过物业小程序提前预约访客车位。升级期间东、西两个入口将各保留一条人工通道，请听从现场秩序员引导，减速慢行。</div>
-      </article>
+    <div class="news-grid" id="newsGrid">
+      <p class="news-empty">公告加载中…</p>
     </div>
   </div>
 </section>
@@ -1653,15 +1615,68 @@ section[id]{scroll-margin-top:120px;}
   monthEl.textContent = (now.getMonth()+1) + '月';
   weekEl.textContent = weeks[now.getDay()];
 
-  /* ---- 公告展开/收起 ---- */
-  document.querySelectorAll('.news-card').forEach(function(card){
-    var btn = card.querySelector('.news-more');
-    btn.addEventListener('click', function(){
-      var open = card.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      btn.firstChild.textContent = open ? '收起详情 ' : '查看详情 ';
-    });
-  });
+  /* ---- 公告：由 Pages CMS 发布的 content/posts 动态加载 ---- */
+  (function(){
+    var grid = document.getElementById('newsGrid');
+    if(!grid) return;
+    function esc(s){
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function render(items){
+      if(!items.length){
+        grid.innerHTML = '<p class="news-empty">暂无公告，敬请期待。</p>';
+        return;
+      }
+      grid.innerHTML = items.map(function(n){
+        var desc = esc(n.desc || n.body).replace(/\n/g,' ').slice(0,110);
+        var bodyHtml = esc(n.body).replace(/\n/g,'<br>');
+        return '<article class="news-card">' +
+          '<div class="news-top">' +
+            '<span class="news-badge">' + esc(n.category || '公告') + '</span>' +
+            '<span class="news-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>' + esc(n.date) + '</span>' +
+          '</div>' +
+          '<h3 class="news-title">' + esc(n.title) + '</h3>' +
+          '<p class="news-desc">' + desc + '</p>' +
+          '<button class="news-more" aria-expanded="false">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>' +
+          '<div class="news-full">' + bodyHtml + '</div>' +
+        '</article>';
+      }).join('');
+      grid.querySelectorAll('.news-card').forEach(function(card){
+        var btn = card.querySelector('.news-more');
+        btn.addEventListener('click', function(){
+          var open = card.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          btn.firstChild.textContent = open ? '收起详情 ' : '查看详情 ';
+        });
+      });
+    }
+    function parseMd(text){
+      var m = text.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*\r?\n?([\s\S]*)$/);
+      if(!m) return null;
+      var fm = {};
+      m[1].split(/\r?\n/).forEach(function(line){
+        var i = line.indexOf(':');
+        if(i > -1) fm[line.slice(0,i).trim()] = line.slice(i+1).trim();
+      });
+      return {title: fm.title || '未命名公告', date: fm.date || '', category: fm.category || '公告', body: (m[2]||'').trim()};
+    }
+    fetch('https://api.github.com/repos/beimiya/beimiya.github.io/contents/content/posts', {headers:{'Accept':'application/vnd.github+json'}})
+      .then(function(r){ if(!r.ok) throw new Error('list-failed'); return r.json(); })
+      .then(function(files){
+        var mds = (Array.isArray(files) ? files : []).filter(function(f){ return /\.md$/i.test(f.name); });
+        mds.sort(function(a,b){ return a.name < b.name ? 1 : -1; });
+        return Promise.all(mds.map(function(f){
+          return fetch('https://raw.githubusercontent.com/beimiya/beimiya.github.io/main/content/posts/' + encodeURIComponent(f.name))
+            .then(function(r){ if(!r.ok) throw new Error('file-failed'); return r.text(); });
+        }));
+      })
+      .then(function(texts){
+        render(texts.map(parseMd).filter(Boolean));
+      })
+      .catch(function(){
+        grid.innerHTML = '<p class="news-empty">公告加载失败，请稍后刷新查看。</p>';
+      });
+  })();
 
   /* ---- 规约/议事规则 展开/收起 ---- */
   document.querySelectorAll('.doc-card').forEach(function(card){

@@ -1,0 +1,27 @@
+media: media
+content:
+  - name: posts
+    label: 小区公告
+    type: collection
+    path: content/posts
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 日期
+        type: datetime
+        required: true
+      - name: category
+        label: 分类
+        type: select
+        options:
+          - 社区活动
+          - 维保通知
+          - 环境服务
+          - 系统升级
+          - 温馨提示
+      - name: body
+        label: 正文
+        type: text
