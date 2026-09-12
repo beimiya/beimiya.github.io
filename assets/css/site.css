@@ -611,9 +611,14 @@ section[id]{scroll-margin-top:90px;}
   .site-header{top:0;}
   .weather-bar{position:absolute;top:72px;left:0;right:0;background:transparent;border-bottom:none;box-shadow:none;margin-top:0;padding:0;}
   .wb-inner{background:transparent;border:none;box-shadow:none;padding:8px 14px;gap:0 12px;flex-wrap:nowrap;overflow:hidden;font-size:11px;}
-  .weather-bar .wb-lead{padding-right:12px;border-right:1px solid var(--line);width:auto;padding-bottom:0;margin-bottom:0;border-bottom:none;flex:none;}
+  .weather-bar .wb-lead{padding-right:12px;border-right:1px solid rgba(255,255,255,.28);width:auto;padding-bottom:0;margin-bottom:0;border-bottom:none;flex:none;}
   .weather-bar .wb-loc{display:none;}
   .weather-bar .wb-tip{display:none;}
+  .weather-bar{color:var(--white);}
+  .weather-bar .wb-now b{color:#fff;}
+  .weather-bar .wb-item .wb-label{color:rgba(255,255,255,.75);}
+  .weather-bar .wb-item .wb-val{color:#fff;}
+  .weather-bar .wb-now i{color:rgba(255,255,255,.9);}
   .wb-item{white-space:nowrap;flex-shrink:1;min-width:0;}
   .wb-item .wb-label{font-size:10px;}
   .wb-item .wb-val{font-size:13px;}
