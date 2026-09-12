@@ -111,7 +111,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(16,38,29,.28) 0%,rgba(16,38,29,.12) 40%,rgba(14,32,25,.78) 100%);
 }
-.hero-inner{position:relative;z-index:2;width:100%;padding-bottom:56px;}
+.hero-inner{position:relative;z-index:2;width:100%;padding:130px 0 56px;}
 .hero-tag{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(255,255,255,.16);backdrop-filter:blur(6px);
@@ -193,7 +193,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 
 /* ===== 今日天气条（位于菜单栏下方，随页面滚动消失） ===== */
 .weather-bar{
-  position:absolute;top:72px;left:0;right:0;z-index:2;
+  position:absolute;top:72px;left:0;right:0;z-index:3;
   background:transparent;border-bottom:none;
   box-shadow:none;
 }
@@ -600,6 +600,7 @@ section[id]{scroll-margin-top:90px;}
   .nav-cta{margin-left:0;text-align:center;}
   .nav-toggle{display:flex;}
   .hero{padding-top:0;min-height:88vh;}
+  .hero-inner{padding-top:170px;}
   .hero-stats{grid-template-columns:repeat(2,1fr);gap:14px 0;}
   .hstat:nth-child(3){border-left:none;}
   .hstat:nth-child(n+3){border-top:1px solid rgba(255,255,255,.2);padding-top:14px;}
