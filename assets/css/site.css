@@ -610,22 +610,23 @@ section[id]{scroll-margin-top:90px;}
   .today-hotline{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:16px;}
   .site-header{top:0;}
   .weather-bar{position:absolute;top:72px;left:0;right:0;background:transparent;border-bottom:none;box-shadow:none;margin-top:0;padding:0;}
-  .wb-inner{background:transparent;border:none;box-shadow:none;padding:6px 10px;gap:0 10px;flex-wrap:nowrap;overflow:hidden;font-size:10.5px;}
-  .weather-bar .wb-lead{padding-right:10px;border-right:1px solid rgba(255,255,255,.28);width:auto;padding-bottom:0;margin-bottom:0;border-bottom:none;flex:none;gap:6px;}
+  .wb-inner{background:transparent;border:none;box-shadow:none;padding:6px 8px;gap:0 8px;flex-wrap:nowrap;overflow:hidden;font-size:10px;}
+  .weather-bar .wb-lead{padding-right:8px;border-right:1px solid rgba(255,255,255,.28);width:auto;padding-bottom:0;margin-bottom:0;border-bottom:none;flex:none;gap:5px;}
   .weather-bar .wb-loc{display:none;}
   .weather-bar .wb-tip{display:none;}
-  .weather-bar .wb-ic{width:26px;height:26px;}
-  .weather-bar .wb-ic svg{width:15px;height:15px;}
+  .weather-bar .wb-ic{width:22px;height:22px;}
+  .weather-bar .wb-ic svg{width:13px;height:13px;}
   .weather-bar{color:var(--white);}
   .weather-bar .wb-now b{color:#fff;}
   .weather-bar .wb-item .wb-label{color:rgba(255,255,255,.75);}
   .weather-bar .wb-item .wb-val{color:#fff;}
   .weather-bar .wb-now i{color:rgba(255,255,255,.9);}
-  .wb-item{white-space:nowrap;flex-shrink:1;min-width:0;gap:4px;}
-  .weather-bar .wb-item .wb-label{font-size:10px;}
-  .weather-bar .wb-item .wb-val{font-size:12px;}
+  .weather-bar .wb-item{white-space:nowrap;flex-shrink:1;min-width:0;gap:3px;}
+  .weather-bar .wb-item .wb-label{font-size:9.5px;}
+  .weather-bar .wb-item .wb-val{font-size:11.5px;}
   .weather-bar .wb-item:has(#weatherSun){display:none;}
-  .weather-bar .wb-now b{font-size:15px;}
+  .weather-bar .wb-now b{font-size:14px;}
+  .weather-bar .wb-now i{font-size:11px;}
   .about-points{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .news-grid{grid-template-columns:1fr;}
