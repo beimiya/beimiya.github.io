@@ -502,7 +502,7 @@ section[id]{scroll-margin-top:90px;}
 .back-top svg{width:22px;height:22px;}
 
 /* ===== 业主委员会 ===== */
-.committee-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;align-items:start;}
+.committee-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;align-items:stretch;}
 .committee-card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:28px;}
 .committee-card h4{font-family:var(--font-serif);font-size:19px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
 .committee-card h4 svg{width:20px;height:20px;color:var(--pine);}
